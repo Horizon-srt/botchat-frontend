@@ -3,6 +3,7 @@ import styles from '../Login/styles/style.module.css'
 import router from 'next/router';
 import { Store } from '@/store/store';
 import { useStore } from 'reto';
+import { Button } from '@arco-design/web-react';
 
 const Login = () => {
     const {setUserInfo, setLoginState, loginState} = useStore(Store);
@@ -35,6 +36,7 @@ const Login = () => {
                     />
                 </div>
             </div>
+            <Button type='primary'>aaa</Button>
             <button className={styles.loginButton}>Login</button>
             <button className={styles.registerButton} onClick={() => {router.push('/register');}}>Register</button>
         </div>
