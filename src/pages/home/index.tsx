@@ -1,5 +1,6 @@
 import { useStore } from 'reto'
 import styles from '../home/styles/style.module.css'
+import mainStyles from '../../styles/main.module.css'
 import { Store } from '@/store/store';
 import { useEffect } from 'react';
 import router from 'next/router';
@@ -13,7 +14,7 @@ const Home = () => {
     }, [loginState]);
 
     return (
-        <main className={styles.main}>
+        <main className={mainStyles.background}>
             
         </main>
     )

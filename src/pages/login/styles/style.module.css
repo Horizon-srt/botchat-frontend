@@ -1,105 +1,34 @@
-.header {
+.container {
+    padding: 250px;
+}
+
+.content {
+    height: 580px;
+    width: 520px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.title {
+    font-weight: bold;
     font-size: 50px;
-    margin: 10px; /* 设置外边距为10像素 */
-    font-family:monospace
+    margin-bottom: 0px;
+    margin-top: 70px;
 }
 
-.button {
-    width: auto;
-    border-radius: 5px;
-    background-color: #b3e0ed;
-    border: 1px solid black;
-    position: absolute;
-    right: 300px;
-}
-  
-.contain {
+.buttonArea {
     display: flex;
-    background-color: #b3e0ed;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
-    border-radius: 5px;
-    border: 1px solid black;
-    padding-left: 100px;
-    padding-right: 100px;
-    padding-top: 30px;
-    padding-bottom: 30px;
+    margin-bottom: 70px;
 }
 
-.input{
-    margin-top: 30px;
-    transform: scale(1.2);
-    display: flex;
-    flex-direction: row;
-    justify-self: center;
-    align-items: center;
-}
-
-.inputlable {
-    width: 5rem;
-}
-
-.inputBox{
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 10px;
-    outline: none;
-}
-
-.loginButton{
-    width: 300px;
-    height: 50px;
-    font-size: 20px;
-    border-radius: 5px;
-    border: 1px solid black;
-    margin-top: 30px;
-}
-
-.registerButton{
-    font-size: 20px;
-    margin-top: 30px;
-    color: blue;
-    text-decoration: underline;
-}
-
-.popup {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transform: scale(1.2);
-  }
-  
-  .popupContent {
-      background-color: #fff;
-      padding: 20px;
-      border-radius: 5px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-  }
-    
-  .close {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      cursor: pointer;
-      font-size: 18px;
-  }
-  
-
-.main {
+.formitem {
+    margin: 0px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 5rem;
-    min-height: 100vh;
 }

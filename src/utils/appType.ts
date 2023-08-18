@@ -35,11 +35,27 @@ export interface TopicProps {
   theme: string;
 }
 
+// 传入主题id，返回对话内容列表，包含每次问答
+export interface GetTopicDetailProps {
+  topic_id: string;
+}
+
+export interface TopicDetailProps {
+  details: []
+}
+
+export interface DetailProps {
+  detail_id: string
+  prompt: string;
+  response_word: string;
+  // response_voice: mp3;
+}
+
 // 发送声音
-// export interface VoiceProps {
-//   user_id: string;
-//   prompt_voice: ;
-// }
+export interface VoiceProps {
+  user_id: string;
+  // prompt_voice: ;
+}
 
 // 发送文字
 export interface WordsProps {
@@ -49,5 +65,6 @@ export interface WordsProps {
 
 // 处理结果
 export interface response {
-  response: string;
+  response_word: string;
+  // response_voice: ;
 }
