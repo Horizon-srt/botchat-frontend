@@ -1,0 +1,23 @@
+.interaction {
+    display: flex;
+    flex-direction: row;
+    width: 95%;
+    height: 32px;
+    justify-content: space-between;
+}
+
+.area {
+    width: 90%;
+    border-radius: 5px;
+}
+
+.icon {
+    height: 100%;
+    font-size: 24px;
+    color: #04B000;
+}
+
+.submitButton {
+    height: 32px;
+    margin-right: 10px;
+}

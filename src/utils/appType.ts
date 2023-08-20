@@ -41,20 +41,20 @@ export interface GetTopicDetailProps {
 }
 
 export interface TopicDetailProps {
-  details: []
+  details: DetailProps[]
 }
 
 export interface DetailProps {
   detail_id: string
   prompt: string;
   response_word: string;
-  // response_voice: mp3;
+  response_voice: Blob;
 }
 
 // 发送声音
 export interface VoiceProps {
   user_id: string;
-  // prompt_voice: ;
+  prompt_voice: Blob;
 }
 
 // 发送文字
@@ -66,5 +66,5 @@ export interface WordsProps {
 // 处理结果
 export interface response {
   response_word: string;
-  // response_voice: ;
+  response_voice: Blob;
 }

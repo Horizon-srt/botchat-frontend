@@ -1,0 +1,31 @@
+.themearea {
+    width: 300px;
+    display: flex;
+    flex-direction: row;
+    margin-left: 30px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.appicon {
+    width: 30px;
+}
+
+.theme {
+    width: 210px;
+    color: #165DFF;
+    font-size: larger;
+    margin-left: 10px;
+}
+
+.editicon {
+    width: 30px;
+}
+
+.downicon {
+    width: 30px;
+}
+
+.menuarea {
+    width: 280px;
+}

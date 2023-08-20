@@ -4,10 +4,11 @@ import mainStyles from '@/styles/main.module.css'
 import router from 'next/router';
 import { Store } from '@/store/store';
 import { useStore } from 'reto';
-import { Button, Form, Input } from '@arco-design/web-react';
+import { Button, Form } from '@arco-design/web-react';
 import Link from 'next/link';
 import { postUserLogin } from '@/api/api';
 import { UserLoginProps } from '@/utils/appType';
+import InputItem from '@/components/InputItem';
 
 const Login = () => {
     const [form] = Form.useForm();
@@ -23,7 +24,6 @@ const Login = () => {
         console.log(form.getFieldsValue())
         try {
             const res = await postUserLogin({...form.getFieldsValue()} as UserLoginProps);
-            console.log(res)
             if (res) {
                 setUserInfo(res)
                 setLoginState(true)
@@ -41,24 +41,18 @@ const Login = () => {
                 <div className={mainStyles.container}>
                     <Form className={styles.content} form={form} wrapperCol={{ span: 16 }}>
                         <p className={styles.title}>Login</p>
-                        <Form.Item
-                            className={styles.formitem}
+                        <InputItem 
                             field='username'
                             rules={[
-                              {
-                                required: true,
-                                type: 'string',
-                              },
+                                {
+                                  required: true,
+                                  type: 'string',
+                                },
                             ]}
-                        >
-                            <Input
-                                className={mainStyles.inputBox} 
-                                style={{height:'32px', width:'350px'}}
-                                placeholder='User Name'
-                            />
-                        </Form.Item>
-                        <Form.Item
-                            className={styles.formitem}
+                            placeholder='User Name'
+                            password={false}
+                        />
+                        <InputItem 
                             field='password'
                             rules={[
                               {
@@ -66,15 +60,11 @@ const Login = () => {
                                 type: 'string',
                               },
                             ]}
-                        >
-                            <Input.Password
-                                className={mainStyles.inputBox} 
-                                style={{height:'32px', width:'350px'}}
-                                placeholder='Password'
-                            />
-                        </Form.Item>
+                            placeholder='Password'
+                            password={true}
+                        />
                         <div className={styles.buttonArea}>
-                            <Button 
+                            <Button
                                 className={mainStyles.loginButton}
                                 style={{height:'32', width:'350px', color:'#ffffff'}}
                                 onClick={handleLogin}

@@ -2,11 +2,11 @@ import { useState } from 'react';
 import styles from '@/pages/login/styles/style.module.css'
 import mainStyles from '@/styles/main.module.css'
 import router from 'next/router';
-import { Input, Button, Form } from '@arco-design/web-react';
+import { Button, Form } from '@arco-design/web-react';
 import Link from 'next/link';
-import form from '@arco-design/web-react/es/Form/form';
 import { postUserRegister } from '@/api/api';
 import { UserRegisterProps } from '@/utils/appType';
+import InputItem from '@/components/InputItem';
 
 const Register = () => {
     const [form] = Form.useForm();
@@ -19,7 +19,6 @@ const Register = () => {
         } catch (e) {
             console.log(e)
         }
-        
     }
 
     return (
@@ -28,8 +27,7 @@ const Register = () => {
                 <div className={mainStyles.container}>
                     <Form className={styles.content} form={form} wrapperCol={{ span: 16 }}>
                         <p className={styles.title}>Register</p>
-                        <Form.Item
-                            className={styles.formitem}
+                        <InputItem
                             field='username'
                             rules={[
                                 {
@@ -38,15 +36,10 @@ const Register = () => {
                                     maxLength: 30
                                 },
                             ]}
-                        >
-                            <Input 
-                                className={mainStyles.inputBox} 
-                                style={{height:'32px', width:'350px'}}
-                                placeholder='User Name'
+                            placeholder='User Name'
+                            password={false}
                         />
-                        </Form.Item>
-                        <Form.Item
-                            className={styles.formitem}
+                        <InputItem
                             field='password'
                             rules={[
                                 {
@@ -55,15 +48,10 @@ const Register = () => {
                                     minLength: 6
                                 },
                             ]}
-                        >
-                            <Input.Password
-                                className={mainStyles.inputBox} 
-                                style={{height:'32px', width:'350px'}}
-                                placeholder='Password'
-                            />
-                        </Form.Item>
-                        <Form.Item
-                            className={styles.formitem}
+                            placeholder='Password'
+                            password={true}
+                        />
+                        <InputItem
                             field='email'
                             rules={[
                                 {
@@ -75,13 +63,9 @@ const Register = () => {
                                     type: 'string',
                                 },
                             ]}
-                        >
-                            <Input 
-                                className={mainStyles.inputBox} 
-                                style={{height:'32px', width:'350px'}}
-                                placeholder='Email Address'
-                            />
-                        </Form.Item>
+                            placeholder='Email Address'
+                            password={false}
+                        />
                         <div className={styles.buttonArea}>
                             <Button 
                                 className={mainStyles.loginButton}
