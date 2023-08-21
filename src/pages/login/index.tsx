@@ -21,7 +21,6 @@ const Login = () => {
     }, [loginState]);
 
     const handleLogin = async () => {
-        console.log(form.getFieldsValue())
         try {
             const res = await postUserLogin({...form.getFieldsValue()} as UserLoginProps);
             if (res) {

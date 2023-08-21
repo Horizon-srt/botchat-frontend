@@ -1,4 +1,4 @@
-import { GetTopicsProps, UserLoginProps, UserRegisterProps, GetTopicDetailProps, VoiceProps, WordsProps } from '@/utils/appType';
+import { GetTopicsProps, UserLoginProps, UserRegisterProps, GetTopicDetailProps, VoiceProps, WordsProps, ChangeInfoProps, ChangeThemeProps } from '@/utils/appType';
 import axios from 'axios'
 
 export const postUserLogin = async (args: UserLoginProps) => {
@@ -54,9 +54,21 @@ export const getTopicDetail = async (args: GetTopicDetailProps) => {
     // });
     const mockDetails = {
         details: [{
-            detail_id: 'a',
-            prompt: 'a',
-            response_word: 'a',
+            detail_id: '1',
+            prompt: 'Hello',
+            response_word: 'Hi',
+            response_voice: new Blob()
+        },
+        {
+            detail_id: '2',
+            prompt: 'how to learn js',
+            response_word: 'god can help you',
+            response_voice: new Blob()
+        },
+        {
+            detail_id: '3',
+            prompt: 'Really?',
+            response_word: 'Really',
             response_voice: new Blob()
         }]
     };
@@ -72,6 +84,20 @@ export const postVoice = async (args: VoiceProps) => {
 
 export const postWords = async (args: WordsProps) => {
     const { data } = await axios.post('http://localhost:80/botchat/chat/sendword', {
+        ...args
+    });
+    return data;
+}
+
+export const postChangeTheme = async (args: ChangeThemeProps) => {
+    const { data } = await axios.post('http://localhost:80/botchat/change/theme', {
+        ...args
+    });
+    return data;
+}
+
+export const postChangeInfo = async (args: ChangeInfoProps) => {
+    const { data } = await axios.post('http://localhost:80/botchat/change/info', {
         ...args
     });
     return data;

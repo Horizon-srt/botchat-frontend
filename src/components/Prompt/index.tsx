@@ -9,7 +9,7 @@ const Prompt: React.FC<PromptProps> = ({ prompt }) => {
     const {userInfo} = useStore(Store);
 
     return (
-        <div></div>
+        <div>{prompt}</div>
     );
 }
 

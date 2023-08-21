@@ -1,3 +1,5 @@
+import { ChangeableWord } from "./dataType";
+
 // 用户信息
 export interface UserInfoProps {
   username: string;
@@ -67,4 +69,18 @@ export interface WordsProps {
 export interface Response {
   response_word: string;
   response_voice: Blob;
+}
+
+// 修改主题名称
+export interface ChangeThemeProps {
+  topic_id: string;
+  theme: string;
+}
+
+// 
+export interface ChangeInfoProps {
+  username: string;
+  password: string;
+  email: string;
+  user_id: string;
 }

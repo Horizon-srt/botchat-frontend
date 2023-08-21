@@ -23,7 +23,7 @@ const Response: React.FC<Response> = ({ response_voice, response_word }) => {
     }
 
     return (
-        <div></div>
+        <div>{response_word}</div>
     );
 }
 
