@@ -6,11 +6,11 @@ import Prompt from '../Prompt';
 import Response from '../Response';
 
 interface DialogProps {
-    details: DetailProps[]
+    details: DetailProps[];
 }
 
 const Dialog: React.FC<DialogProps> = ({ details }) => {
-  // console.log(details)
+  console.log(details);
   return (
     <div className={styles.container}>
       <div className={mainStyles.container} style={{height:'600px'}}>

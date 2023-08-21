@@ -2,11 +2,10 @@
 import React from 'react';
 import styles from '@/components/Themes/styles/style.module.css';
 import { TopicProps } from '@/utils/appType';
-import { Dropdown, Menu, Message } from '@arco-design/web-react';
+import { Dropdown, Form, Menu, Message } from '@arco-design/web-react';
 import { IconApps, IconDown, IconEdit } from '@arco-design/web-react/icon';
 import FormModal from '../FromModal';
 import { useState } from 'react';
-import useForm from '@arco-design/web-react/es/Form/useForm';
 import InputItem from '../InputItem';
 import { postChangeTheme } from '@/api/api';
 import { useStore } from 'reto';
@@ -20,7 +19,7 @@ interface ThemesProp {
 
 const Themes: React.FC<ThemesProp> = ({ topics, topic, setTopic }) => {
   const [visible, setVisible] = useState<boolean>(false);
-  const [form] = useForm();
+  const [form] = Form.useForm();
   const {userInfo} = useStore(Store);
 
   const onSubmit = async () => {

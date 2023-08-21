@@ -14,7 +14,7 @@ const Home = () => {
   const {userInfo, loginState} = useStore(Store);
   const [topics, setTopics] = useState<TopicProps[]>([] as TopicProps[]);
   const [topic, setTopic] = useState<TopicProps>({} as TopicProps);
-  const [details, setDetails] = useState<DetailProps[]>({} as DetailProps[]);
+  const [details, setDetails] = useState<DetailProps[]>([] as DetailProps[]);
 
   useEffect(() => {
     if (!loginState) {

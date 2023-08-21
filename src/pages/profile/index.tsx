@@ -1,8 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { postChangeInfo } from '@/api/api';
 import { Store } from '@/store/store';
-import { Message } from '@arco-design/web-react';
-import useForm from '@arco-design/web-react/es/Form/useForm';
+import { Form, Message } from '@arco-design/web-react';
 import React from 'react';
 import router from 'next/router';
 import { useEffect } from 'react';
@@ -10,7 +9,7 @@ import { useStore } from 'reto';
 
 const Profile = () => {
   const {loginState, userInfo, setUserInfo} = useStore(Store);
-  const [form] = useForm();
+  const [form] = Form.useForm();
 
   useEffect(() => {
     if (!loginState) {
