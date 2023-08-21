@@ -64,7 +64,7 @@ export interface WordsProps {
 }
 
 // 处理结果
-export interface response {
+export interface Response {
   response_word: string;
   response_voice: Blob;
 }
