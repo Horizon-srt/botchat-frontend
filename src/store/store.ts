@@ -1,5 +1,5 @@
-import { UserInfoProps } from "@/utils/appType";
-import { useState } from "react"
+import { UserInfoProps } from '@/utils/appType';
+import { useState } from 'react';
 
 export const Store = () => {
   const [loginState, setLoginState] = useState(false);
@@ -8,7 +8,7 @@ export const Store = () => {
   const logout = () => {
     setLoginState(false);
     setUserInfo({} as UserInfoProps);
-  }
+  };
 
   return {
     loginState,
@@ -16,5 +16,5 @@ export const Store = () => {
     userInfo,
     setUserInfo,
     logout
-  }
-}
+  };
+};

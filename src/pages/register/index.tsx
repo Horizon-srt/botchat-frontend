@@ -1,6 +1,7 @@
-import { useState } from 'react';
-import styles from '@/pages/login/styles/style.module.css'
-import mainStyles from '@/styles/main.module.css'
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import React from 'react';
+import styles from '@/pages/login/styles/style.module.css';
+import mainStyles from '@/styles/main.module.css';
 import router from 'next/router';
 import { Button, Form } from '@arco-design/web-react';
 import Link from 'next/link';
@@ -9,82 +10,88 @@ import { UserRegisterProps } from '@/utils/appType';
 import InputItem from '@/components/InputItem';
 
 const Register = () => {
-    const [form] = Form.useForm();
+  const [form] = Form.useForm();
 
-    const handleRegister = async () => {
-        console.log(form.getFieldsValue())
-        try {
-            const res = await postUserRegister({...form.getFieldsValue()} as UserRegisterProps);
-            router.push('/login')
-        } catch (e) {
-            console.log(e)
-        }
+  const handleRegister = async () => {
+    console.log(form.getFieldsValue());
+    try {
+      const res = await postUserRegister(
+        {...form.getFieldsValue()} as UserRegisterProps
+      );
+      router.push('/login');
+    } catch (e) {
+      console.log(e);
     }
+  };
 
-    return (
-        <main className={mainStyles.background}>
-            <div className={styles.container}>
-                <div className={mainStyles.container}>
-                    <Form className={styles.content} form={form} wrapperCol={{ span: 16 }}>
-                        <p className={styles.title}>Register</p>
-                        <InputItem
-                            field='username'
-                            rules={[
-                                {
-                                    required: true,
-                                    type: 'string',
-                                    maxLength: 30
-                                },
-                            ]}
-                            placeholder='User Name'
-                            password={false}
-                        />
-                        <InputItem
-                            field='password'
-                            rules={[
-                                {
-                                    required: true,
-                                    type: 'string',
-                                    minLength: 6
-                                },
-                            ]}
-                            placeholder='Password'
-                            password={true}
-                        />
-                        <InputItem
-                            field='email'
-                            rules={[
-                                {
-                                    type: 'email',
-                                    validateLevel: 'warning',
-                                },
-                                {
-                                    required: true,
-                                    type: 'string',
-                                },
-                            ]}
-                            placeholder='Email Address'
-                            password={false}
-                        />
-                        <div className={styles.buttonArea}>
-                            <Button 
-                                className={mainStyles.loginButton}
-                                style={{height:'32', width:'350px', color:'#ffffff'}}
-                                onClick={handleRegister}
-                            >
+  return (
+    <main className={mainStyles.background}>
+      <div className={styles.container}>
+        <div className={mainStyles.container}>
+          <Form
+            className={styles.content}
+            form={form}
+            wrapperCol={{ span: 16 }}
+          >
+            <p className={styles.title}>Register</p>
+            <InputItem
+              field='username'
+              rules={[
+                {
+                  required: true,
+                  type: 'string',
+                  maxLength: 30
+                },
+              ]}
+              placeholder='User Name'
+              password={false}
+            />
+            <InputItem
+              field='password'
+              rules={[
+                {
+                  required: true,
+                  type: 'string',
+                  minLength: 6
+                },
+              ]}
+              placeholder='Password'
+              password={true}
+            />
+            <InputItem
+              field='email'
+              rules={[
+                {
+                  type: 'email',
+                  validateLevel: 'warning',
+                },
+                {
+                  required: true,
+                  type: 'string',
+                },
+              ]}
+              placeholder='Email Address'
+              password={false}
+            />
+            <div className={styles.buttonArea}>
+              <Button
+                className={mainStyles.loginButton}
+                style={{height:'32', width:'350px', color:'#ffffff'}}
+                onClick={handleRegister}
+              >
                                 register
-                            </Button>
-                            <p>{"Already have an account? "}
-                                <Link href={'/login'}>
+              </Button>
+              <p>{'Already have an account? '}
+                <Link href={'/login'}>
                                     Log in!
-                                </Link>
-                            </p>
-                        </div>
-                    </Form>
-                </div>
+                </Link>
+              </p>
             </div>
-        </main>
-    )
-}
+          </Form>
+        </div>
+      </div>
+    </main>
+  );
+};
 
 export default Register;

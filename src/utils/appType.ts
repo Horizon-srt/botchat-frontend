@@ -1,25 +1,23 @@
-import { ChangeableWord } from "./dataType";
-
 // 用户信息
 export interface UserInfoProps {
   username: string;
   password: string;
   email: string;
   user_id: string;
-};
+}
 
 // 用户登录信息
 export interface UserLoginProps {
   username: string;
   password: string;
-};
+}
 
 // 用户注册信息
 export interface UserRegisterProps {
   username: string;
   password: string;
   email: string;
-};
+}
 
 // 获取用户topic请求
 export interface GetTopicsProps {
@@ -77,7 +75,7 @@ export interface ChangeThemeProps {
   theme: string;
 }
 
-// 
+//
 export interface ChangeInfoProps {
   username: string;
   password: string;
