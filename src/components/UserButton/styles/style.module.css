@@ -1,0 +1,32 @@
+.userArea {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-right: 30px;
+}
+
+.avator {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.avatorbox {
+  padding: 5px;
+}
+
+.appicon {
+  width: 30px;
+}
+
+.username {
+  width: 150px;
+  color: #165DFF;
+  font-size: 20px;
+  margin-left: 10px;
+}
+
+.menuarea {
+  width: 180px;
+  font-size: 14px;
+}

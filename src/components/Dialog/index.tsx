@@ -10,7 +10,6 @@ interface DialogProps {
 }
 
 const Dialog: React.FC<DialogProps> = ({ details }) => {
-  console.log(details);
   return (
     <div className={styles.container}>
       <div className={mainStyles.container} style={{height:'600px'}}>
