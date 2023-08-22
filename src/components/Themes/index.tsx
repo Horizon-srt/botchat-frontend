@@ -3,21 +3,32 @@ import React from 'react';
 import styles from '@/components/Themes/styles/style.module.css';
 import { TopicProps } from '@/utils/appType';
 import { Dropdown, Form, Menu, Message } from '@arco-design/web-react';
-import { IconApps, IconDown, IconEdit } from '@arco-design/web-react/icon';
+import {
+  IconApps,
+  IconDown,
+  IconEdit,
+  IconPlus
+} from '@arco-design/web-react/icon';
 import FormModal from '../FromModal';
 import { useState } from 'react';
 import InputItem from '../InputItem';
-import { postChangeTheme } from '@/api/api';
+import { postChangeTheme, postCreateTopic } from '@/api/api';
 import { useStore } from 'reto';
 import { Store } from '@/store/store';
 
 interface ThemesProp {
     topics: TopicProps[];
     topic: TopicProps;
-    setTopic: (args: TopicProps) => void
+    setTopic: (args: TopicProps) => void,
+    setTopics: (args: TopicProps[]) => void
 }
 
-const Themes: React.FC<ThemesProp> = ({ topics, topic, setTopic }) => {
+const Themes: React.FC<ThemesProp> = ({
+  topics,
+  topic,
+  setTopic,
+  setTopics
+}) => {
   const [visible, setVisible] = useState<boolean>(false);
   const [form] = Form.useForm();
   const {userInfo} = useStore(Store);
@@ -30,14 +41,32 @@ const Themes: React.FC<ThemesProp> = ({ topics, topic, setTopic }) => {
       });
       if (res) {
         Message.success('Change done!');
+      } else {
+        Message.error('Change failed!');
       }
     } catch (e) {
       Message.error('Change failed!');
     }
   };
 
-  const handlemenu = (topicIndex: string) => {
-    setTopic(topics[topicIndex as unknown as number]);
+  const handlemenu = async (topicIndex: string) => {
+    if (topicIndex === 'new') {
+      try {
+        const res = await postCreateTopic({
+          user_id: userInfo.user_id
+        });
+        if (res.topics) {
+          setTopics(res.topics);
+          Message.success('Create new topic success!');
+        } else {
+          Message.error('Create new topic failed!');
+        }
+      } catch (e) {
+        Message.error('Create new topic failed!');
+      }
+    } else {
+      setTopic(topics[topicIndex as unknown as number]);
+    }
   };
 
   const dropList = (
@@ -49,6 +78,10 @@ const Themes: React.FC<ThemesProp> = ({ topics, topic, setTopic }) => {
           );
         })
       }
+      <Menu.Item key={'new'} className={styles.newtopic}>
+        New Topic
+        <IconPlus style={{fontSize:'14px'}}/>
+      </Menu.Item>
     </Menu>
   );
 

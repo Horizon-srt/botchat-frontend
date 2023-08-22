@@ -1,9 +1,16 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
-import { Response } from '@/utils/appType';
 import { useEffect, useState } from 'react';
 
-const Response: React.FC<Response> = ({ response_voice, response_word }) => {
+interface ResponseProps {
+  response_voice: Blob,
+  response_word: string
+}
+
+const Response: React.FC<ResponseProps> = ({
+  response_voice,
+  response_word
+}) => {
   const [play, setPlay] = useState<boolean>(false);
   const [voiceUrl, setVoiceUrl] = useState<string>('');
 

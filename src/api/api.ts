@@ -6,14 +6,17 @@ import {
   GetTopicDetailProps,
   VoiceProps, WordsProps,
   ChangeInfoProps,
-  ChangeThemeProps
+  ChangeThemeProps,
+  CreateTopicProps
 } from '@/utils/appType';
 import axios from 'axios';
 
 export const postUserLogin = async (args: UserLoginProps) => {
-  // const { data } = await axios.post('http://localhost:80/botchat/user/login', {
+  // const { data } = await axios.post(
+  //   'http://localhost:3306/botchat/user/login',
+  //   {
   //     ...args
-  // });
+  //   });
   const mockUserInfo = {
     username: 'aaa',
     password: 'aaa',
@@ -25,19 +28,23 @@ export const postUserLogin = async (args: UserLoginProps) => {
 };
 
 export const postUserRegister = async (args: UserRegisterProps) => {
-  const { data } = await axios.post('http://localhost:80/botchat/userregister',{
-    ...args
-  });
+  const { data } = await axios.post(
+    'http://localhost:3306/botchat/userregister',
+    {
+      ...args
+    });
   return data;
 };
 
 ///
 export const getTopics = async (args: GetTopicsProps) => {
-  // const { data } = await axios.get('http://localhost:80/botchat/chat/gettopics', {
+  // const { data } = await axios.get(
+  //   'http://localhost:3306/botchat/chat/gettopics',
+  //   {
   //     params: {
-  //         ...args
+  //       ...args
   //     }
-  // });
+  //   });
   const mockTopics = {
     topics: [{
       topic_id: '100',
@@ -56,11 +63,13 @@ export const getTopics = async (args: GetTopicsProps) => {
 };
 
 export const getTopicDetail = async (args: GetTopicDetailProps) => {
-  // const { data } = await axios.get('http://localhost:80/botchat/chat/getdetails', {
+  // const { data } = await axios.get(
+  //   'http://localhost:3306/botchat/chat/getdetails',
+  //   {
   //     params: {
-  //         ...args
+  //       ...args
   //     }
-  // });
+  //   });
   const mockDetails = {
     details: [{
       detail_id: '1',
@@ -86,7 +95,7 @@ export const getTopicDetail = async (args: GetTopicDetailProps) => {
 
 export const postVoice = async (args: VoiceProps) => {
   const { data } = await axios.post(
-    'http://localhost:80/botchat/chat/sendvoice',
+    'http://localhost:3306/botchat/chat/sendvoice',
     {
       ...args
     });
@@ -95,7 +104,7 @@ export const postVoice = async (args: VoiceProps) => {
 
 export const postWords = async (args: WordsProps) => {
   const { data } = await axios.post(
-    'http://localhost:80/botchat/chat/sendword',
+    'http://localhost:3306/botchat/chat/sendword',
     {
       ...args
     });
@@ -104,7 +113,7 @@ export const postWords = async (args: WordsProps) => {
 
 export const postChangeTheme = async (args: ChangeThemeProps) => {
   const { data } = await axios.post(
-    'http://localhost:80/botchat/change/theme',
+    'http://localhost:3306/botchat/chat/change/theme',
     {
       ...args
     });
@@ -113,9 +122,19 @@ export const postChangeTheme = async (args: ChangeThemeProps) => {
 
 export const postChangeInfo = async (args: ChangeInfoProps) => {
   const { data } = await axios.post(
-    'http://localhost:80/botchat/change/info',
+    'http://localhost:3306/botchat/user/change/info',
     {
       ...args
     });
+  return data;
+};
+
+export const postCreateTopic = async (args: CreateTopicProps) => {
+  const { data } = await axios.post(
+    'http://localhost:3306/botchat/chat/newtopic',
+    {
+      ...args
+    }
+  );
   return data;
 };

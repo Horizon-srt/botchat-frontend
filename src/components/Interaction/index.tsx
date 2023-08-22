@@ -4,22 +4,52 @@ import { postVoice, postWords } from '@/api/api';
 import styles from '@/components/Interaction/styles/style.module.css';
 import { Store } from '@/store/store';
 import useMediaRecorder from '@/utils/useMediaRecorder';
-import { Button, Input } from '@arco-design/web-react';
+import { Button, Input, Message } from '@arco-design/web-react';
 import { IconVoice } from '@arco-design/web-react/icon';
 import { useState } from 'react';
 import { useStore } from 'reto';
+import { TopicProps } from '@/utils/appType';
 
-const Interaction = () => {
+interface InteractionProps {
+  topic: TopicProps,
+  updateTopics: boolean,
+  setUpdateTopics: (args: boolean) => void,
+  updateTopic: boolean,
+  setUpdateTopic: (args: boolean) => void
+}
+
+const Interaction: React.FC<InteractionProps> = ({
+  topic,
+  updateTopics,
+  updateTopic,
+  setUpdateTopics,
+  setUpdateTopic
+}) => {
   const [prompt_word, setPrompt_word] = useState('');
   const [onRecord, setOnRecord] = useState(false);
   const {userInfo} = useStore(Store);
   const {mediaBlob, startRecord, stopRecord} = useMediaRecorder();
 
   const handleSubmit = async () => {
-    const res = await postWords({
-      user_id: userInfo.user_id,
-      prompt_word: prompt_word
-    });
+    try {
+      const res = await postWords({
+        user_id: userInfo.user_id,
+        topic_id: topic.topic_id,
+        prompt_word: prompt_word
+      });
+      if (res) {
+        if (res.topic_id !== topic.topic_id) {
+          setUpdateTopics(!updateTopics);
+        } else {
+          setUpdateTopic(!updateTopic);
+        }
+      } else {
+        Message.error('Submit failed!');
+      }
+    } catch (e) {
+      Message.error('Submit failed!');
+    }
+
   };
 
   const handleVoice = async () => {
@@ -29,14 +59,24 @@ const Interaction = () => {
         setOnRecord(false);
         const res = await postVoice({
           user_id: userInfo.user_id,
+          topic_id: topic.topic_id,
           prompt_voice: mediaBlob
         });
+        if (res) {
+          if (res.topic_id !== topic.topic_id) {
+            setUpdateTopics(!updateTopics);
+          } else {
+            setUpdateTopic(!updateTopic);
+          }
+        } else {
+          Message.error('Submit failed!');
+        }
       } else {
         setOnRecord(true);
         startRecord();
       }
     } catch (e) {
-      alert('Record audio failed... Please try again');
+      Message.error('Record audio failed... Please try again');
     }
   };
 

@@ -54,17 +54,20 @@ export interface DetailProps {
 // 发送声音
 export interface VoiceProps {
   user_id: string;
+  topic_id: string;
   prompt_voice: Blob;
 }
 
 // 发送文字
 export interface WordsProps {
   user_id: string;
+  topic_id: string;
   prompt_word: string;
 }
 
 // 处理结果
 export interface Response {
+  topic_id: string;
   response_word: string;
   response_voice: Blob;
 }
@@ -80,5 +83,10 @@ export interface ChangeInfoProps {
   username: string;
   password: string;
   email: string;
+  user_id: string;
+}
+
+// 创建新主题
+export interface CreateTopicProps {
   user_id: string;
 }

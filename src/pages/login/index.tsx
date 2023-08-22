@@ -5,7 +5,7 @@ import mainStyles from '@/styles/main.module.css';
 import router from 'next/router';
 import { Store } from '@/store/store';
 import { useStore } from 'reto';
-import { Button, Form } from '@arco-design/web-react';
+import { Button, Form, Message } from '@arco-design/web-react';
 import Link from 'next/link';
 import { postUserLogin } from '@/api/api';
 import { UserLoginProps } from '@/utils/appType';
@@ -29,11 +29,12 @@ const Login = () => {
       if (res) {
         setUserInfo(res);
         setLoginState(true);
+        Message.success('Login success!');
       } else {
-        console.log(res);
+        Message.error('Login failed!');
       }
     } catch(e) {
-      console.log(e);
+      Message.error('Login failed!');
     }
   };
 

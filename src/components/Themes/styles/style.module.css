@@ -30,3 +30,10 @@
     width: 270px;
     font-size: 14px;
 }
+
+.newtopic {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}

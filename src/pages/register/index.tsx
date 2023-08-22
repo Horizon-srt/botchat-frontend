@@ -3,7 +3,7 @@ import React from 'react';
 import styles from '@/pages/login/styles/style.module.css';
 import mainStyles from '@/styles/main.module.css';
 import router from 'next/router';
-import { Button, Form } from '@arco-design/web-react';
+import { Button, Form, Message } from '@arco-design/web-react';
 import Link from 'next/link';
 import { postUserRegister } from '@/api/api';
 import { UserRegisterProps } from '@/utils/appType';
@@ -18,9 +18,14 @@ const Register = () => {
       const res = await postUserRegister(
         {...form.getFieldsValue()} as UserRegisterProps
       );
+      if (res) {
+        Message.success('Register success!');
+      } else {
+        Message.error('Register failed!');
+      }
       router.push('/login');
     } catch (e) {
-      console.log(e);
+      Message.error('Register failed!');
     }
   };
 
