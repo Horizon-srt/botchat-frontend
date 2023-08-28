@@ -1,6 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React from 'react';
+import React, { useRef } from 'react';
 import { useEffect, useState } from 'react';
+import Audio from 'react-audio-player';
+import styles from '@/components/Response/styles/style.module.css';
 
 interface ResponseProps {
   response_voice: Blob,
@@ -13,7 +15,6 @@ const Response: React.FC<ResponseProps> = ({
 }) => {
   const [play, setPlay] = useState<boolean>(false);
   const [voiceUrl, setVoiceUrl] = useState<string>('');
-
   useEffect(() => {
     setVoiceUrl(URL.createObjectURL(response_voice));
   }, [response_voice]);
@@ -32,7 +33,10 @@ const Response: React.FC<ResponseProps> = ({
   };
 
   return (
-    <div>{response_word}</div>
+    <div className={styles.response}>
+      {response_word}
+      <Audio controls src={voiceUrl}/>
+    </div>
   );
 };
 

@@ -2,6 +2,8 @@
 import React from 'react';
 import { Store } from '@/store/store';
 import { useStore } from 'reto';
+import styles from '@/components/Prompt/styles/style.module.css';
+import Bjut from '@/assets/Bjut.jpg';
 
 interface PromptProps {
     prompt: string;
@@ -11,7 +13,10 @@ const Prompt: React.FC<PromptProps> = ({ prompt }) => {
   const {userInfo} = useStore(Store);
 
   return (
-    <div>{prompt}</div>
+    <div>
+      <div className={styles.prompt}>{prompt}</div>
+      {/* <Image></Image> */}
+    </div>
   );
 };
 

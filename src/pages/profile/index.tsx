@@ -50,22 +50,42 @@ const Profile = () => {
         <div className={styles.container}>
           <div className={mainStyles.container}>
             <Form className={styles.content}>
-              <Form.Item field='username' defaultValue={userInfo.username}>
+              <Form.Item
+                field='username'
+                defaultValue={userInfo.username}
+                className={styles.username}
+              >
+                username:
                 <Input
                   className={styles.inputBox}
-                  style={{width:'900px', height:'64px'}}
+                  placeholder="Enter your userName"
+                  style={{width:'430px', height:'64px'}}
                 />
               </Form.Item>
-              <Form.Item field='password' defaultValue={userInfo.username}>
+              <Form.Item
+                field='password'
+                defaultValue={userInfo.username}
+                className={styles.password}
+              >
+                password:
                 <Input
+                  type='password'
+                  placeholder="Enter your password"
                   className={styles.inputBox}
-                  style={{width:'900px', height:'48px'}}
+                  style={{width:'500px', height:'48px'}}
                 />
               </Form.Item>
-              <Form.Item field='email' defaultValue={userInfo.username}>
+              <Form.Item
+                field='email'
+                defaultValue={userInfo.username}
+                className={styles.email}
+              >
+                email:
                 <Input
+                  type='email'
                   className={styles.inputBox}
-                  style={{width:'900px', height:'48px'}}
+                  placeholder="Enter your email"
+                  style={{width:'605px', height:'48px'}}
                 />
               </Form.Item>
               <div className={styles.buttons}>
