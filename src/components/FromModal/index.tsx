@@ -37,12 +37,14 @@ const FormModal: React.FC<FormModalProps> = ({
           <Button
             className={mainStyles.loginButton}
             onClick={onCancel}
+            style={{color:'white'}}
           >
           Cancel
           </Button>
           <Button
             className={mainStyles.loginButton}
             onClick={onSubmit}
+            style={{color:'white'}}
           >
           Submit
           </Button>

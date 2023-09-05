@@ -37,3 +37,36 @@
   justify-content: space-between;
   align-items: center;
 }
+
+.envModal {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.buttonArea {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.envTitle {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 300;
+  height: 80px;
+  font-size: 36px;
+  font-weight: bold;
+  align-items: center;
+  padding-bottom: 40px;
+}
+
+.modalStyle {
+  border-radius: 20px;
+  width: 520px;
+  height: 580px;
+}

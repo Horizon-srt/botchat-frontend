@@ -20,6 +20,6 @@
 }
 
 .loginButton {
-    background: linear-gradient(to left, #78AEFF, #FDCCCF);
+    background: linear-gradient(to right, #78AEFF, #FDCCCF);
     border-radius: 100px;
 }

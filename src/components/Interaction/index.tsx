@@ -60,7 +60,7 @@ const Interaction: React.FC<InteractionProps> = ({
         const res = await postVoice({
           user_id: userInfo.user_id,
           topic_id: topic.topic_id,
-          prompt_voice: mediaBlob
+          prompt_voice: mediaBlob.toString()
         });
         if (res) {
           if (res.topic_id !== topic.topic_id) {

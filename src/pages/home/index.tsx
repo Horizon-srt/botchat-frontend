@@ -14,7 +14,7 @@ import { Message } from '@arco-design/web-react';
 const Home = () => {
   const {userInfo, loginState} = useStore(Store);
   const [topics, setTopics] = useState<TopicProps[]>([] as TopicProps[]);
-  const [topic, setTopic] = useState<TopicProps>({} as TopicProps);
+  const [topic, setTopic] = useState<TopicProps>({topic_id: '-1', theme: ''});
   const [details, setDetails] = useState<DetailProps[]>([] as DetailProps[]);
   const [updateTopics, setUpdateTopics] = useState<boolean>(false);
   const [updateTopic, setUpdateTopic] = useState<boolean>(false);

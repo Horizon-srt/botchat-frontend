@@ -1,8 +1,17 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
 import styles from '@/components/Themes/styles/style.module.css';
+import mainStyles from '@/styles/main.module.css';
 import { TopicProps } from '@/utils/appType';
-import { Dropdown, Form, Menu, Message } from '@arco-design/web-react';
+import {
+  Button,
+  Dropdown,
+  Form,
+  Input,
+  Menu,
+  Message,
+  Modal
+} from '@arco-design/web-react';
 import {
   IconApps,
   IconDown,
@@ -12,7 +21,11 @@ import {
 import FormModal from '../FromModal';
 import { useState } from 'react';
 import InputItem from '../InputItem';
-import { postChangeTheme, postCreateTopic } from '@/api/api';
+import {
+  postChangeTheme,
+  postCreateTopic,
+  postCreatecustomization
+} from '@/api/api';
 import { useStore } from 'reto';
 import { Store } from '@/store/store';
 
@@ -30,7 +43,10 @@ const Themes: React.FC<ThemesProp> = ({
   setTopics
 }) => {
   const [visible, setVisible] = useState<boolean>(false);
+  const [visibleNew, setVisibleNew] = useState<boolean>(false);
+  const [visibleCustom, setVisibleCustom] = useState<boolean>(false);
   const [form] = Form.useForm();
+  const [formCustom] = Form.useForm();
   const {userInfo} = useStore(Store);
 
   const onSubmit = async () => {
@@ -49,21 +65,55 @@ const Themes: React.FC<ThemesProp> = ({
     }
   };
 
-  const handlemenu = async (topicIndex: string) => {
-    if (topicIndex === 'new') {
-      try {
-        const res = await postCreateTopic({
-          user_id: userInfo.user_id
-        });
-        if (res.topics) {
-          setTopics(res.topics);
-          Message.success('Create new topic success!');
-        } else {
-          Message.error('Create new topic failed!');
-        }
-      } catch (e) {
+  const onCreateNew = async () => {
+    try {
+      const res = await postCreateTopic({
+        user_id: userInfo.user_id
+      });
+      if (res.topics) {
+        setTopics(res.topics);
+        Message.success('Create new topic success!');
+      } else {
         Message.error('Create new topic failed!');
       }
+    } catch (e) {
+      Message.error('Create new topic failed!');
+    }
+  };
+
+  const onCreateCustom = async () => {
+    try {
+      const res = await postCreatecustomization({
+        user_id: userInfo.user_id,
+        instructions: formCustom.getFieldValue('instruction')
+      });
+      if (res.topics) {
+        setTopics(res.topics);
+        Message.success('Create new topic success!');
+      } else {
+        Message.error('Create new topic failed!');
+      }
+    } catch (e) {
+      Message.error('Create new topic failed!');
+    }
+  };
+
+  const handlemenu = async (topicIndex: string) => {
+    if (topicIndex === 'new') {
+      setVisibleNew(true);
+      // try {
+      //   const res = await postCreateTopic({
+      //     user_id: userInfo.user_id
+      //   });
+      //   if (res.topics) {
+      //     setTopics(res.topics);
+      //     Message.success('Create new topic success!');
+      //   } else {
+      //     Message.error('Create new topic failed!');
+      //   }
+      // } catch (e) {
+      //   Message.error('Create new topic failed!');
+      // }
     } else {
       setTopic(topics[topicIndex as unknown as number]);
     }
@@ -115,6 +165,84 @@ const Themes: React.FC<ThemesProp> = ({
           password={false}
         />
       </FormModal>
+      <Modal
+        visible={visibleNew}
+        simple={true}
+        footer={null}
+        className={styles.modalStyle}
+        maskClosable
+        onCancel={() => setVisibleNew(false)}
+      >
+        <div className={styles.envTitle}>
+          Chose an environment
+        </div>
+        <div className={styles.envModal}>
+          <div className={styles.buttonArea}>
+            <Button
+              className={mainStyles.loginButton}
+              style={{width:'380px', height:'40px', color:'white'}}
+              onClick={onCreateNew}
+            >
+              Free conversation
+            </Button>
+          </div>
+          <div
+            className={styles.buttonArea}
+            style={{width:'380px', height:'40px', color:'white'}}
+          >
+            <Button
+              className={mainStyles.loginButton}
+              style={{width:'380px', height:'40px', color:'white'}}
+            >
+              Choose exist conversation environment <IconDown />
+            </Button>
+          </div>
+          <div
+            className={styles.buttonArea}>
+            <Button
+              className={mainStyles.loginButton}
+              style={{width:'380px', height:'40px', color:'white'}}
+              onClick={() => setVisibleCustom(true)}
+            >
+              Build a new conversation environment
+            </Button>
+          </div>
+          <div className={styles.buttonArea}>
+            <Button
+              className={mainStyles.loginButton}
+              style={{width:'380px', height:'40px', color:'white'}}
+              onClick={() => setVisibleNew(false)}
+            >
+              Cancel
+            </Button>
+          </div>
+        </div>
+      </Modal>
+      <Modal
+        visible={visibleCustom}
+        simple={true}
+        footer={null}
+        className={styles.modalStyle}
+        maskClosable
+        onCancel={() => setVisibleCustom(false)}
+      >
+        <div className={styles.customTitle}>Create your own environment!</div>
+        <div className={styles.customText}>
+          Do you have any instruction for chatbot?
+        </div>
+        <Form>
+          <Form.Item field='instruction'>
+            <Input.TextArea placeholder='Please enter...' />
+          </Form.Item>
+        </Form>
+        <Button
+          className={mainStyles.loginButton}
+          style={{color:'white'}}
+          onClick={onCreateCustom}
+        >
+          Confirm!
+        </Button>
+      </Modal>
     </div>
   );
 };
