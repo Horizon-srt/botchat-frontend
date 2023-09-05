@@ -45,7 +45,7 @@ export interface TopicDetailProps {
 }
 
 export interface DetailProps {
-  detail_id: string
+  conversation_id: string
   prompt: string;
   response_word: string;
   response_voice: Blob;
@@ -109,6 +109,57 @@ export interface ReRecordVoiceResponseProps { // 后端返回的JSON数据:
   message: string; // 返回的消息，例如"Voice replaced successfully"或"Failed to replace voice"
 }
 
+// 获取语音评价
+export interface GetAudioAssessmentProps { // 请求参数:
+  conversation_id: string;
+}
+
+export interface GetAudioAssessmentResponseProps { // 后端返回的JSON数据:
+  audio_assessment: string;
+}
+
+// 发送文字新数据类型
+// export interface HandleTextProps { // 请求体中的JSON数据:
+//   user_id: string;
+//   prompt_word: string;
+//   topic_id: string;
+// }
+
+// export interface HandleTextResponseProps { // 后端返回的JSON数据:
+//   topic_id: string;
+//   conversation_id: string;
+//   prompt: string;
+// }
+
+// 发送音频新数据类型
+export interface HandleAudioProps { // 请求体中的JSON数据:
+  user_id: string;
+  prompt_voice: Blob;
+  topic_id: string;
+  }
+
+export interface HandleAudioResponseProps { // 后端返回的JSON数据:
+  topic_id: string;
+  conversation_id: string;
+  prompt: string;
+}
+
+
+// 发送文字获取结果新数据类型
+export interface ChatWithOpenAIProps { // 请求体中的JSON数据:
+  user_id: string;
+  prompt_word: string;
+  topic_id: string;
+  conversation_id: string;
+}
+
+export interface ChatWithOpenAIResponseProps { // 后端返回的JSON数据:
+  topic_id: string;
+  conversation_id: string;
+  response: string;
+}
+
+// 发送文字转成音频
 export interface TextToSpeechProps { // 请求体中的JSON数据:
   conversation_id: string;
   response_word: string;
@@ -116,12 +167,4 @@ export interface TextToSpeechProps { // 请求体中的JSON数据:
 
 export interface TextToSpeechResponseProps { // 后端返回的JSON数据:
   response_voice: Blob;
-}
-
-export interface GetAudioAssessmentProps { // 请求参数:
-  conversation_id: string;
-}
-
-export interface GetAudioAssessmentResponseProps { // 后端返回的JSON数据:
-  audio_assessment: string;
 }
