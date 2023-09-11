@@ -19,7 +19,7 @@ const Dialog: React.FC<DialogProps> = ({ details }) => {
           // console.log(value.response_word);
           return (
             <div key={index}>
-              <Prompt prompt={value.prompt} />
+              <Prompt prompt={value.prompt_word} />
               <Response
                 response_voice={value.response_voice}
                 response_word={value.response_word}

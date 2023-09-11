@@ -45,8 +45,10 @@ export interface TopicDetailProps {
 }
 
 export interface DetailProps {
-  conversation_id: string
-  prompt: string;
+  conversation_id: string;
+  prompt_word: string;
+  prompt_voice: Blob;
+  audio_assessment: string;
   response_word: string;
   response_voice: Blob;
 }

@@ -89,6 +89,8 @@ const Home = () => {
         setUpdateTopics={setUpdateTopics}
         updateTopic={updateTopic}
         setUpdateTopic={setUpdateTopic}
+        details={details}
+        setDetails={setDetails}
       />
     </main>
   );

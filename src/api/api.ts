@@ -78,30 +78,36 @@ export const getTopics = async (args: GetTopicsProps) => {
 
 // 获取指定Topic的详细对话内容
 export const getTopicDetail = async (args: GetTopicDetailProps) => {
-  const { data } = await axios.get(
-    'http://' + ip_address + ':' + port + '/botchat/chat/getdetails/',
-    {
-      params: {
-        ...args
-      }
-    });
+  // const { data } = await axios.get(
+  //   'http://' + ip_address + ':' + port + '/botchat/chat/getdetails/',
+  //   {
+  //     params: {
+  //       ...args
+  //     }
+  //   });
   const mockDetails = {
     details: [{
       conversation_id: '1',
-      prompt: 'Hello',
+      prompt_word: 'Hello',
+      prompt_voice: new Blob(),
       response_word: 'Hi',
+      audio_assessment: 'a',
       response_voice: new Blob()
     },
     {
       conversation_id: '2',
-      prompt: 'how to learn js',
+      prompt_word: 'Hello',
+      prompt_voice: new Blob(),
       response_word: 'god can help you',
+      audio_assessment: 'a',
       response_voice: new Blob()
     },
     {
       conversation_id: '3',
-      prompt: 'Really?',
+      prompt_word: 'Hello',
+      prompt_voice: new Blob(),
       response_word: 'Really',
+      audio_assessment: 'a',
       response_voice: new Blob()
     }]
   };
