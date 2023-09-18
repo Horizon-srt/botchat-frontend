@@ -1,8 +1,11 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useRef } from 'react';
 import { useEffect, useState } from 'react';
-import Audio from 'react-audio-player';
+import Image from 'next/image';
+import Bjut from '@/assets/Bjut.jpg';
+import AudioButton from '@/assets/AudioButton.png';
 import styles from '@/components/Response/styles/style.module.css';
+import { Card } from '@arco-design/web-react';
 
 interface ResponseProps {
   response_voice: Blob,
@@ -18,13 +21,18 @@ const Response: React.FC<ResponseProps> = ({
   useEffect(() => {
     setVoiceUrl(URL.createObjectURL(response_voice));
   }, [response_voice]);
+  const audioRef = useRef(null);
 
   const handleVoice = () => {
-    if (play) {
+    if (!play) {
       setVoiceUrl(URL.createObjectURL(response_voice));
       // 播放音频
+      audioRef.current.play();
+      setPlay(!play);
     } else {
       // 结束播放
+      audioRef.current.pause();
+      setPlay(!play);
       if (voiceUrl) {
         URL.revokeObjectURL(voiceUrl);
       }
@@ -32,10 +40,23 @@ const Response: React.FC<ResponseProps> = ({
     }
   };
 
+
   return (
     <div className={styles.response}>
-      {response_word}
-      <Audio controls src={voiceUrl}/>
+      <Image src={Bjut} alt='default avator' className={styles.avator}></Image>
+      <Card
+        title='UserName'
+        bordered={false}
+        className={styles.card}
+        extra={<Image src={AudioButton}  alt='default avator' className={styles.audiobutton} onClick={handleVoice}/>}
+      >
+        <div style={{ fontSize: '16px' }}>
+          {response_word}
+        </div>
+        <audio ref={audioRef}>
+          <source src="http://streaming.tdiradio.com:8000/house.mp3" type="audio/mpeg" />
+        </audio>
+      </Card>
     </div>
   );
 };

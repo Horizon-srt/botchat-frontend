@@ -1,6 +1,22 @@
-.prompt{
+.text{
     margin: 20px;
     text-align: right;
     font-size: large;
     margin-right: 30px;
+}
+
+.avator{
+    width: 40px;
+    height: 40px;
+    display: inline-flex;
+    padding: 16px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.prompt{
+    display: flex;
+    text-align: right;
+    justify-content: flex-end;
 }

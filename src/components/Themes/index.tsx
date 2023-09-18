@@ -10,7 +10,10 @@ import {
   Input,
   Menu,
   Message,
-  Modal
+  Modal,
+  Skeleton,
+  Tooltip,
+  Trigger
 } from '@arco-design/web-react';
 import {
   IconApps,
@@ -135,6 +138,30 @@ const Themes: React.FC<ThemesProp> = ({
     </Menu>
   );
 
+  const choiceList = (
+    <Menu>
+      <Menu.Item key='1'>Shopping</Menu.Item>
+      <Menu.Item key='2'>Tour</Menu.Item>
+      <Menu.Item key='3'>Restaurant</Menu.Item>
+    </Menu>
+  );
+
+  function Popup() {
+    return (
+      <div className='demo-trigger-popup' style={{ width: 300 }}>
+        <Tooltip defaultPopupVisible>
+          <span>123123</span>
+        </Tooltip>
+      </div>
+    );
+  }
+
+  const tri = (
+    <div className='demo-trigger-popup' style={{ width:'300px' }}>
+
+    </div>
+  );
+
   return (
     <div className={styles.themearea}>
       <IconApps fontSize='18px' className={styles.appicon} />
@@ -174,7 +201,7 @@ const Themes: React.FC<ThemesProp> = ({
         onCancel={() => setVisibleNew(false)}
       >
         <div className={styles.envTitle}>
-          Chose an environment
+          Choose an environment
         </div>
         <div className={styles.envModal}>
           <div className={styles.buttonArea}>
@@ -190,12 +217,18 @@ const Themes: React.FC<ThemesProp> = ({
             className={styles.buttonArea}
             style={{width:'380px', height:'40px', color:'white'}}
           >
-            <Button
-              className={mainStyles.loginButton}
-              style={{width:'380px', height:'40px', color:'white'}}
+            <Dropdown
+              droplist={choiceList}
+              trigger='click'
+              position='bottom'
             >
-              Choose exist conversation environment <IconDown />
-            </Button>
+              <Button
+                className={mainStyles.loginButton}
+                style={{width:'380px', height:'40px', color:'white'}}
+              >
+                Choose exist conversation environment <IconDown/>
+              </Button>
+            </Dropdown>
           </div>
           <div
             className={styles.buttonArea}>
