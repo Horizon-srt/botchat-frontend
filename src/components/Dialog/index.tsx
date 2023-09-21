@@ -12,7 +12,7 @@ interface DialogProps {
 const Dialog: React.FC<DialogProps> = ({ details }) => {
   return (
     <div className={styles.container}>
-      <div className={mainStyles.container} style={{height:'600px'}}>
+      <div className={mainStyles.container}>
         {details.map((value, index) => {
           // console.log(value.prompt);
           console.log(value.response_voice);
@@ -25,7 +25,6 @@ const Dialog: React.FC<DialogProps> = ({ details }) => {
                 response_word={value.response_word}
               />
             </div>
-
           );
         })}
       </div>

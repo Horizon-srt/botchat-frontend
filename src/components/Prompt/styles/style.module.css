@@ -19,4 +19,24 @@
     display: flex;
     text-align: right;
     justify-content: flex-end;
+    font-size: large;
+}
+
+.iconInfo{
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    padding-bottom: 10px;
+}
+
+.demoTriggerPopup {
+    padding: 10px;
+    width: 300px;
+    text-align: center;
+    background-color: var(--color-bg-popup);
+    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.15);
+}
+
+.card{
+    font-size: 20px;
 }

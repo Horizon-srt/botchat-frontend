@@ -1,6 +1,7 @@
 .response{
     font-size: large;
     display: flex;
+    padding-left: 16px;
 }
 
 .avator{

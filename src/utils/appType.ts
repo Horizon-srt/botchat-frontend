@@ -24,6 +24,11 @@ export interface GetTopicsProps {
   user_id: string;
 }
 
+// 获取用户语境请求
+export interface GetEnvironmentsProps {
+  user_id: string;
+}
+
 // 返回topic列表
 export interface TopicsProps {
   topics: TopicProps[]
@@ -31,6 +36,12 @@ export interface TopicsProps {
 
 // topice简要信息列表项
 export interface TopicProps {
+  topic_id: string;
+  theme: string;
+}
+
+// 语境简要信息列表项
+export interface EnvironmentProps {
   topic_id: string;
   theme: string;
 }

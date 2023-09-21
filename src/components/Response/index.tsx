@@ -50,7 +50,7 @@ const Response: React.FC<ResponseProps> = ({
         className={styles.card}
         extra={<Image src={AudioButton}  alt='default avator' className={styles.audiobutton} onClick={handleVoice}/>}
       >
-        <div style={{ fontSize: '16px' }}>
+        <div style={{ fontSize: '20px' }}>
           {response_word}
         </div>
         <audio ref={audioRef}>

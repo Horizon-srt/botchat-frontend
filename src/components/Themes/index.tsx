@@ -11,9 +11,7 @@ import {
   Menu,
   Message,
   Modal,
-  Skeleton,
   Tooltip,
-  Trigger
 } from '@arco-design/web-react';
 import {
   IconApps,
@@ -46,6 +44,7 @@ const Themes: React.FC<ThemesProp> = ({
   setTopics
 }) => {
   const [visible, setVisible] = useState<boolean>(false);
+  const [visibleGo, setVisibleGo] = useState<boolean>(true);
   const [visibleNew, setVisibleNew] = useState<boolean>(false);
   const [visibleCustom, setVisibleCustom] = useState<boolean>(false);
   const [form] = Form.useForm();
@@ -69,6 +68,7 @@ const Themes: React.FC<ThemesProp> = ({
   };
 
   const onCreateNew = async () => {
+    setVisibleNew(false);
     try {
       const res = await postCreateTopic({
         user_id: userInfo.user_id
@@ -121,6 +121,32 @@ const Themes: React.FC<ThemesProp> = ({
       setTopic(topics[topicIndex as unknown as number]);
     }
   };
+  // TODO: 补全创建场景功能
+  const onUseHistory = async () =>{
+    setVisibleGo(false);
+  };
+
+  const onCreateExist = async () =>{
+    setVisibleNew(false);
+    try {
+      const res = await postCreateTopic({
+        user_id: userInfo.user_id
+      });
+      if (res.topics) {
+        setTopics(res.topics);
+        Message.success('Create new topic success!');
+      } else {
+        Message.error('Create new topic failed!');
+      }
+    } catch (e) {
+      Message.error('Create new topic failed!');
+    }
+  };
+  // TODO：同handleMenu
+  const open = async () =>{
+    setVisibleNew(true);
+    setVisibleGo(false);
+  };
 
   const dropList = (
     <Menu className={styles.menuarea} onClickMenuItem={handlemenu}>
@@ -139,22 +165,23 @@ const Themes: React.FC<ThemesProp> = ({
   );
 
   const choiceList = (
-    <Menu>
-      <Menu.Item key='1'>Shopping</Menu.Item>
-      <Menu.Item key='2'>Tour</Menu.Item>
-      <Menu.Item key='3'>Restaurant</Menu.Item>
+    <Menu className={styles.choiceArea} onClickMenuItem={onCreateExist}>
+      <Menu.Item key='Shopping'>Shopping</Menu.Item>
+      <Menu.Item key='Tour'>Tour</Menu.Item>
+      <Menu.Item key='Restaurant'>Restaurant</Menu.Item>
     </Menu>
   );
 
-  function Popup() {
-    return (
-      <div className='demo-trigger-popup' style={{ width: 300 }}>
-        <Tooltip defaultPopupVisible>
-          <span>123123</span>
-        </Tooltip>
-      </div>
-    );
-  }
+  const HistoryList = (
+    <Menu className={styles.choiceArea} onClickMenuItem={onUseHistory}>
+      <Menu.Item key='1'>History1</Menu.Item>
+      <Menu.Item key='2'>History2</Menu.Item>
+      <Menu.Item key='3'>History3</Menu.Item>
+      <Menu.Item key='4'>History4</Menu.Item>
+      <Menu.Item key='5'>History5</Menu.Item>
+      <Menu.Item key='6'>History6</Menu.Item>
+    </Menu>
+  );
 
   const tri = (
     <div className='demo-trigger-popup' style={{ width:'300px' }}>
@@ -192,6 +219,47 @@ const Themes: React.FC<ThemesProp> = ({
           password={false}
         />
       </FormModal>
+      <Modal
+        visible={visibleGo}
+        simple={true}
+        footer={null}
+        className={styles.startModalStyle}
+      >
+        <div className={styles.envTitle}>
+          Let’s Get Started!
+        </div>
+        <div className={styles.chooseTitle}>
+          Chose a conversation or make a new one
+        </div>
+        <div className={styles.envModal}>
+          <div className={styles.buttonArea}>
+            <Button
+              className={mainStyles.loginButton}
+              style={{width:'380px', height:'40px', color:'white'}}
+              onClick={open}
+            >
+                New conversation
+            </Button>
+          </div>
+          <div
+            className={styles.buttonArea}
+            style={{width:'380px', height:'40px', color:'white'}}
+          >
+            <Dropdown
+              droplist={HistoryList}
+              trigger='click'
+              position='bottom'
+            >
+              <Button
+                className={mainStyles.loginButton}
+                style={{width:'380px', height:'40px', color:'white'}}
+              >
+                View History Conversation <IconDown/>
+              </Button>
+            </Dropdown>
+          </div>
+        </div>
+      </Modal>
       <Modal
         visible={visibleNew}
         simple={true}
@@ -237,16 +305,7 @@ const Themes: React.FC<ThemesProp> = ({
               style={{width:'380px', height:'40px', color:'white'}}
               onClick={() => setVisibleCustom(true)}
             >
-              Build a new conversation environment
-            </Button>
-          </div>
-          <div className={styles.buttonArea}>
-            <Button
-              className={mainStyles.loginButton}
-              style={{width:'380px', height:'40px', color:'white'}}
-              onClick={() => setVisibleNew(false)}
-            >
-              Cancel
+              start talking!!!
             </Button>
           </div>
         </div>
@@ -263,18 +322,23 @@ const Themes: React.FC<ThemesProp> = ({
         <div className={styles.customText}>
           Do you have any instruction for chatbot?
         </div>
-        <Form>
-          <Form.Item field='instruction'>
-            <Input.TextArea placeholder='Please enter...' />
+        <Form >
+          <Form.Item field='instruction' className={styles.textArea}>
+            <Input.TextArea
+              placeholder='Please enter...'
+              style={{ minHeight: 250, width: 370 }}
+            />
           </Form.Item>
         </Form>
-        <Button
-          className={mainStyles.loginButton}
-          style={{color:'white'}}
-          onClick={onCreateCustom}
-        >
-          Confirm!
-        </Button>
+        <div className={styles.confirmButton}>
+          <Button
+            className={mainStyles.loginButton}
+            style={{color:'white'}}
+            onClick={onCreateCustom}
+          >
+            Confirm!
+          </Button>
+        </div>
       </Modal>
     </div>
   );

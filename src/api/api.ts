@@ -13,7 +13,8 @@ import {
   ChatWithOpenAIProps,
   HandleAudioProps,
   GetAudioAssessmentProps,
-  TextToSpeechProps
+  TextToSpeechProps,
+  GetEnvironmentsProps
 } from '@/utils/appType';
 import axios from 'axios';
 
@@ -113,6 +114,46 @@ export const getTopicDetail = async (args: GetTopicDetailProps) => {
   };
 
   return mockDetails;
+
+  // return data;
+};
+
+// 获取用户保存的语境
+export const getEnvironment = async (args: GetEnvironmentsProps) => {
+  // const { data } = await axios.get(
+  //   'http://' + ip_address + ':' + port + '/botchat/chat/gettopics/',
+  //   {
+  //     params: {
+  //       ...args
+  //     }
+  //   });
+  const mockEnvironments = {
+    environments: [{
+      topic_id: '100',
+      theme: 'History1'
+    },
+    {
+      topic_id: '200',
+      theme: 'History2'
+    },
+    {
+      topic_id: '300',
+      theme: 'History3'
+    },
+    {
+      topic_id: '400',
+      theme: 'History4'
+    },
+    {
+      topic_id: '500',
+      theme: 'History5'
+    },
+    {
+      topic_id: '600',
+      theme: 'History6'
+    }]
+  };
+  return mockEnvironments;
 
   // return data;
 };
