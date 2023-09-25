@@ -2,10 +2,11 @@
 import React, { useRef } from 'react';
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
-import Bjut from '@/assets/Bjut.jpg';
+import Aiphoto from '@/assets/Aiphoto.jpg';
 import AudioButton from '@/assets/AudioButton.png';
 import styles from '@/components/Response/styles/style.module.css';
 import { Card } from '@arco-design/web-react';
+import { IconUser } from '@arco-design/web-react/icon';
 
 interface ResponseProps {
   response_voice: Blob,
@@ -43,9 +44,9 @@ const Response: React.FC<ResponseProps> = ({
 
   return (
     <div className={styles.response}>
-      <Image src={Bjut} alt='default avator' className={styles.avator}></Image>
+      <IconUser className={styles.avator}/>
       <Card
-        title='UserName'
+        title='Chatbot'
         bordered={false}
         className={styles.card}
         extra={<Image src={AudioButton}  alt='default avator' className={styles.audiobutton} onClick={handleVoice}/>}
