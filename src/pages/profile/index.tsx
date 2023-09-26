@@ -10,7 +10,6 @@ import { useEffect } from 'react';
 import { useStore } from 'reto';
 import Image from 'next/image';
 import Bjut from '@/assets/Bjut.jpg';
-import InputItem from '@/components/InputItem';
 
 const Profile = () => {
   const {loginState, userInfo, setUserInfo} = useStore(Store);
@@ -23,6 +22,7 @@ const Profile = () => {
   }, [loginState]);
 
   const handleSave = async () => {
+    console.log(form.getFieldsValue());
     try {
       const res = await postChangeInfo({
         user_id: userInfo.user_id,
@@ -50,45 +50,69 @@ const Profile = () => {
         </div>
         <div className={styles.container}>
           <div className={mainStyles.container}>
-            <Form className={styles.content}>
+            <Form className={styles.content} form={form}>
+              <p>username:</p>
               <Form.Item
                 field='username'
                 defaultValue={userInfo.username}
                 className={styles.username}
+                rules={[
+                  {
+                    required: true,
+                    type: 'string',
+                  },
+                ]}
               >
-                username:
                 <Input
                   className={styles.inputBox}
                   placeholder="Enter your userName"
                   style={{width:'430px', height:'64px'}}
                 />
               </Form.Item>
+
+              <p>password:</p>
               <Form.Item
                 field='password'
                 defaultValue={userInfo.username}
                 className={styles.password}
+                rules={[
+                  {
+                    required: true,
+                    type: 'string',
+                  },
+                ]}
               >
-                password:
-                <Input
-                  type='password'
+                <Input.Password
                   placeholder="Enter your password"
                   className={styles.inputBox}
-                  style={{width:'500px', height:'48px'}}
+                  style={{width:'430px', height:'64px'}}
                 />
               </Form.Item>
+
+              <p>email:</p>
               <Form.Item
                 field='email'
                 defaultValue={userInfo.username}
                 className={styles.email}
+                rules={[
+                  {
+                    type: 'email',
+                    validateLevel: 'warning',
+                  },
+                  {
+                    required: true,
+                    type: 'string',
+                  },
+                ]}
               >
-                email:
                 <Input
                   type='email'
                   className={styles.inputBox}
                   placeholder="Enter your email"
-                  style={{width:'605px', height:'48px'}}
+                  style={{width:'430px', height:'64px'}}
                 />
               </Form.Item>
+
               <div className={styles.buttons}>
                 <Button
                   className={mainStyles.loginButton}
@@ -105,12 +129,10 @@ const Profile = () => {
                 Back
                 </Button>
               </div>
-
             </Form>
           </div>
         </div>
       </div>
-
     </main>
   );
 };
