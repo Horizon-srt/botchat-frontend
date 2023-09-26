@@ -58,10 +58,10 @@ export interface TopicDetailProps {
 export interface DetailProps {
   conversation_id: string;
   prompt_word: string;
-  prompt_voice: Blob;
+  prompt_voice: string;
   audio_assessment: string;
   response_word: string;
-  response_voice: Blob;
+  response_voice: string;
 }
 
 // 发送声音
@@ -111,6 +111,12 @@ export interface ChatCustomizationProps { // 请求体中的JSON数据:
   instructions: string;
 }
 
+// 预设主题
+export interface PostPresetTopicProps {
+  user_id: string;
+  pre_theme: string;
+}
+
 // 重新录制
 export interface ReRecordVoiceProps { // 请求体中的JSON数据:
   conversation_id: string; // Conversation的主键ID
@@ -147,7 +153,7 @@ export interface GetAudioAssessmentResponseProps { // 后端返回的JSON数据:
 // 发送音频新数据类型
 export interface HandleAudioProps { // 请求体中的JSON数据:
   user_id: string;
-  prompt_voice: Blob;
+  prompt_voice: string | ArrayBuffer | null | undefined;
   topic_id: string;
   }
 
@@ -179,5 +185,5 @@ export interface TextToSpeechProps { // 请求体中的JSON数据:
 }
 
 export interface TextToSpeechResponseProps { // 后端返回的JSON数据:
-  response_voice: Blob;
+  response_voice: string;
 }

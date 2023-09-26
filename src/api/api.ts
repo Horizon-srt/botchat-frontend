@@ -14,7 +14,8 @@ import {
   HandleAudioProps,
   GetAudioAssessmentProps,
   TextToSpeechProps,
-  GetEnvironmentsProps
+  GetEnvironmentsProps,
+  PostPresetTopicProps
 } from '@/utils/appType';
 import axios from 'axios';
 
@@ -23,20 +24,20 @@ const port = '80';
 
 // 用户的登录功能
 export const postUserLogin = async (args: UserLoginProps) => {
-  // const { data } = await axios.post(
-  //   'http://' + ip_address + ':' + port + '/botchat/user/login/',
-  //   {
-  //     ...args
-  //   });
-  const mockUserInfo = {
-    username: 'aaa',
-    password: 'aaa',
-    email: 'aaa',
-    user_id: 'aaa'
-  };
+  const { data } = await axios.post(
+    'http://' + ip_address + ':' + port + '/botchat/user/login/',
+    {
+      ...args
+    });
+  return data;
 
-  return mockUserInfo;
-  // return data;
+  // const mockUserInfo = {
+  //   username: 'aaa',
+  //   password: 'aaa',
+  //   email: 'aaa',
+  //   user_id: 'aaa'
+  // };
+  // return mockUserInfo;
 };
 
 // 注册新用户
@@ -51,111 +52,109 @@ export const postUserRegister = async (args: UserRegisterProps) => {
 
 // 获取用户历史Topic
 export const getTopics = async (args: GetTopicsProps) => {
-  // const { data } = await axios.get(
-  //   'http://' + ip_address + ':' + port + '/botchat/chat/gettopics/',
-  //   {
-  //     params: {
-  //       ...args
-  //     }
-  //   });
-  const mockTopics = {
-    topics: [{
-      topic_id: '100',
-      theme: 'How to use Java'
-    },
+  const { data } = await axios.get(
+    'http://' + ip_address + ':' + port + '/botchat/chat/gettopics/',
     {
-      topic_id: '200',
-      theme: 'pronunciation test'
-    },
-    {
-      topic_id: '300',
-      theme: 'Hello World'
-    }]
-  };
-  return mockTopics;
+      params: {
+        ...args
+      }
+    });
+  return data;
 
-  // return data;
+  // const mockTopics = {
+  //   topics: [{
+  //     topic_id: '100',
+  //     theme: 'How to use Java'
+  //   },
+  //   {
+  //     topic_id: '200',
+  //     theme: 'pronunciation test'
+  //   },
+  //   {
+  //     topic_id: '300',
+  //     theme: 'Hello World'
+  //   }]
+  // };
+  // return mockTopics;
 };
 
 // 获取指定Topic的详细对话内容
 export const getTopicDetail = async (args: GetTopicDetailProps) => {
-  // const { data } = await axios.get(
-  //   'http://' + ip_address + ':' + port + '/botchat/chat/getdetails/',
+  const { data } = await axios.get(
+    'http://' + ip_address + ':' + port + '/botchat/chat/getdetails/',
+    {
+      params: {
+        ...args
+      }
+    });
+  return data;
+  // const mockDetails = {
+  //   details: [{
+  //     conversation_id: '1',
+  //     prompt_word: 'Hello',
+  //     prompt_voice: new Blob(),
+  //     response_word: 'Hi',
+  //     audio_assessment: 'a',
+  //     response_voice: new Blob()
+  //   },
   //   {
-  //     params: {
-  //       ...args
-  //     }
-  //   });
-  const mockDetails = {
-    details: [{
-      conversation_id: '1',
-      prompt_word: 'Hello',
-      prompt_voice: new Blob(),
-      response_word: 'Hi',
-      audio_assessment: 'a',
-      response_voice: new Blob()
-    },
-    {
-      conversation_id: '2',
-      prompt_word: 'Hello',
-      prompt_voice: new Blob(),
-      response_word: 'god can help you',
-      audio_assessment: 'a',
-      response_voice: new Blob()
-    },
-    {
-      conversation_id: '3',
-      prompt_word: 'Hello',
-      prompt_voice: new Blob(),
-      response_word: 'Really',
-      audio_assessment: 'a',
-      response_voice: new Blob()
-    }]
-  };
-
-  return mockDetails;
-
-  // return data;
+  //     conversation_id: '2',
+  //     prompt_word: 'Hello',
+  //     prompt_voice: new Blob(),
+  //     response_word: 'god can help you',
+  //     audio_assessment: 'a',
+  //     response_voice: new Blob()
+  //   },
+  //   {
+  //     conversation_id: '3',
+  //     prompt_word: 'Hello',
+  //     prompt_voice: new Blob(),
+  //     response_word: 'Really',
+  //     audio_assessment: 'a',
+  //     response_voice: new Blob()
+  //   }]
+  // };
+  // return mockDetails;
 };
 
 // 获取用户保存的语境
 export const getEnvironment = async (args: GetEnvironmentsProps) => {
-  // const { data } = await axios.get(
-  //   'http://' + ip_address + ':' + port + '/botchat/chat/gettopics/',
-  //   {
-  //     params: {
-  //       ...args
-  //     }
-  //   });
-  const mockEnvironments = {
-    environments: [{
-      topic_id: '100',
-      theme: 'History1'
-    },
+  const { data } = await axios.get(
+    'http://' + ip_address + ':' + port + '/botchat/chat/gettopics/',
     {
-      topic_id: '200',
-      theme: 'History2'
-    },
-    {
-      topic_id: '300',
-      theme: 'History3'
-    },
-    {
-      topic_id: '400',
-      theme: 'History4'
-    },
-    {
-      topic_id: '500',
-      theme: 'History5'
-    },
-    {
-      topic_id: '600',
-      theme: 'History6'
-    }]
-  };
-  return mockEnvironments;
+      params: {
+        ...args
+      }
+    });
+  return data;
 
-  // return data;
+  // const mockEnvironments = {
+  //   environments: [{
+  //     topic_id: '100',
+  //     theme: 'History1'
+  //   },
+  //   {
+  //     topic_id: '200',
+  //     theme: 'History2'
+  //   },
+  //   {
+  //     topic_id: '300',
+  //     theme: 'History3'
+  //   },
+  //   {
+  //     topic_id: '400',
+  //     theme: 'History4'
+  //   },
+  //   {
+  //     topic_id: '500',
+  //     theme: 'History5'
+  //   },
+  //   {
+  //     topic_id: '600',
+  //     theme: 'History6'
+  //   }]
+  // };
+  // return mockEnvironments;
 };
 
 // 发送语音并获取处理结果（废弃）
@@ -190,6 +189,7 @@ export const postChangeTheme = async (args: ChangeThemeProps) => {
 
 // 修改用户信息
 export const postChangeInfo = async (args: ChangeInfoProps) => {
+  console.log(args);
   const { data } = await axios.post(
     'http://' + ip_address + ':' + port + '/botchat/user/change/info/',
     {
@@ -220,7 +220,18 @@ export const postCreatecustomization = async (args: ChatCustomizationProps) => {
   return data;
 };
 
-// 重新录制用户的语音
+// 提交预设聊天
+export const postPresetTopic = async (args: PostPresetTopicProps) => {
+  const { data } = await axios.post(
+    'http://' + ip_address + ':' + port + '/botchat/chat/preset_topic/',
+    {
+      ...args
+    }
+  );
+  return data;
+};
+
+// 重新录制用户的语音（暂时废弃）
 export const postReRecordVoice = async (args: ReRecordVoiceProps) => {
   const { data } = await axios.post(
     'http://' + ip_address + ':' + port + '/botchat/chat/rerecord_voice/',

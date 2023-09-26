@@ -3,3 +3,8 @@
     width: 95%;
     margin: 40px;
 }
+
+.dialog {
+  height: 600px;
+  overflow: auto;
+}

@@ -25,27 +25,38 @@ import InputItem from '../InputItem';
 import {
   postChangeTheme,
   postCreateTopic,
-  postCreatecustomization
+  postCreatecustomization,
+  postPresetTopic
 } from '@/api/api';
 import { useStore } from 'reto';
 import { Store } from '@/store/store';
 
 interface ThemesProp {
-    topics: TopicProps[];
-    topic: TopicProps;
+    topics: TopicProps[],
+    topic: TopicProps,
+    updateTopics: boolean,
     setTopic: (args: TopicProps) => void,
-    setTopics: (args: TopicProps[]) => void
+    setTopics: (args: TopicProps[]) => void,
+    setUpdateTopics: (args: boolean) => void,
+    visibleNew: boolean,
+    setVisibleNew: (args: boolean) => void,
+    setVisibleStart: (args: boolean) => void
 }
 
 const Themes: React.FC<ThemesProp> = ({
   topics,
   topic,
+  updateTopics,
   setTopic,
-  setTopics
+  setTopics,
+  setUpdateTopics,
+  visibleNew,
+  setVisibleNew,
+  setVisibleStart
 }) => {
   const [visible, setVisible] = useState<boolean>(false);
-  const [visibleGo, setVisibleGo] = useState<boolean>(true);
-  const [visibleNew, setVisibleNew] = useState<boolean>(false);
+  // const [visibleGo, setVisibleGo] = useState<boolean>(true);
+  // const [visibleNew, setVisibleNew] = useState<boolean>(false);
   const [visibleCustom, setVisibleCustom] = useState<boolean>(false);
   const [form] = Form.useForm();
   const [formCustom] = Form.useForm();
@@ -59,6 +70,7 @@ const Themes: React.FC<ThemesProp> = ({
       });
       if (res) {
         Message.success('Change done!');
+        setUpdateTopics(!updateTopics);
       } else {
         Message.error('Change failed!');
       }
@@ -68,19 +80,23 @@ const Themes: React.FC<ThemesProp> = ({
   };
 
   const onCreateNew = async () => {
-    setVisibleNew(false);
     try {
       const res = await postCreateTopic({
         user_id: userInfo.user_id
       });
       if (res.topics) {
         setTopics(res.topics);
+        // setUpdateTopics(!updateTopics);
         Message.success('Create new topic success!');
+        setVisibleNew(false);
+        setVisibleStart(false);
       } else {
         Message.error('Create new topic failed!');
+        setVisibleNew(false);
       }
     } catch (e) {
       Message.error('Create new topic failed!');
+      setVisibleNew(false);
     }
   };
 
@@ -93,6 +109,7 @@ const Themes: React.FC<ThemesProp> = ({
       if (res.topics) {
         setTopics(res.topics);
         Message.success('Create new topic success!');
+        setVisibleStart(false);
       } else {
         Message.error('Create new topic failed!');
       }
@@ -121,31 +138,24 @@ const Themes: React.FC<ThemesProp> = ({
       setTopic(topics[topicIndex as unknown as number]);
     }
   };
-  // TODO: 补全创建场景功能
-  const onUseHistory = async () =>{
-    setVisibleGo(false);
-  };
 
-  const onCreateExist = async () =>{
+  const onCreateExist = async (theme: string) =>{
     setVisibleNew(false);
     try {
-      const res = await postCreateTopic({
-        user_id: userInfo.user_id
+      const res = await postPresetTopic({
+        user_id: userInfo.user_id,
+        pre_theme: theme
       });
       if (res.topics) {
         setTopics(res.topics);
         Message.success('Create new topic success!');
+        setVisibleStart(false);
       } else {
         Message.error('Create new topic failed!');
       }
     } catch (e) {
       Message.error('Create new topic failed!');
     }
-  };
-  // TODO：同handleMenu
-  const open = async () =>{
-    setVisibleNew(true);
-    setVisibleGo(false);
   };
 
   const dropList = (
@@ -170,23 +180,6 @@ const Themes: React.FC<ThemesProp> = ({
       <Menu.Item key='Tour'>Tour</Menu.Item>
       <Menu.Item key='Restaurant'>Restaurant</Menu.Item>
     </Menu>
-  );
-
-  const HistoryList = (
-    <Menu className={styles.choiceArea} onClickMenuItem={onUseHistory}>
-      <Menu.Item key='1'>History1</Menu.Item>
-      <Menu.Item key='2'>History2</Menu.Item>
-      <Menu.Item key='3'>History3</Menu.Item>
-      <Menu.Item key='4'>History4</Menu.Item>
-      <Menu.Item key='5'>History5</Menu.Item>
-      <Menu.Item key='6'>History6</Menu.Item>
-    </Menu>
-  );
-
-  const tri = (
-    <div className='demo-trigger-popup' style={{ width:'300px' }}>
-
-    </div>
   );
 
   return (
@@ -219,47 +212,6 @@ const Themes: React.FC<ThemesProp> = ({
           password={false}
         />
       </FormModal>
-      <Modal
-        visible={visibleGo}
-        simple={true}
-        footer={null}
-        className={styles.startModalStyle}
-      >
-        <div className={styles.envTitle}>
-          Let’s Get Started!
-        </div>
-        <div className={styles.chooseTitle}>
-          Chose a conversation or make a new one
-        </div>
-        <div className={styles.envModal}>
-          <div className={styles.buttonArea}>
-            <Button
-              className={mainStyles.loginButton}
-              style={{width:'380px', height:'40px', color:'white'}}
-              onClick={open}
-            >
-                New conversation
-            </Button>
-          </div>
-          <div
-            className={styles.buttonArea}
-            style={{width:'380px', height:'40px', color:'white'}}
-          >
-            <Dropdown
-              droplist={HistoryList}
-              trigger='click'
-              position='bottom'
-            >
-              <Button
-                className={mainStyles.loginButton}
-                style={{width:'380px', height:'40px', color:'white'}}
-              >
-                View History Conversation <IconDown/>
-              </Button>
-            </Dropdown>
-          </div>
-        </div>
-      </Modal>
       <Modal
         visible={visibleNew}
         simple={true}

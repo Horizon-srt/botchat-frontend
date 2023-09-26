@@ -4,6 +4,8 @@
     width: 95%;
     height: 32px;
     justify-content: space-between;
+    /* border-bottom: 30px; */
+    margin-bottom: 30px;
 }
 
 .area {

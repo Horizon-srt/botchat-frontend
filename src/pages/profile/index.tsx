@@ -32,6 +32,7 @@ const Profile = () => {
       });
       if (res) {
         setUserInfo({...res});
+        form.clearFields();
         Message.success('Save information success!');
       } else {
         Message.error('Save information failed!');

@@ -1,31 +1,47 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { useRef, useState } from 'react';
-import { Store } from '@/store/store';
-import { useStore } from 'reto';
+import React, { useEffect, useRef, useState } from 'react';
 import styles from '@/components/Prompt/styles/style.module.css';
 import Bjut from '@/assets/Bjut.jpg';
 import AudioButton from '@/assets/AudioButton.png';
 import Image from 'next/image';
-import { Card, Popover, Skeleton, Trigger } from '@arco-design/web-react';
+import { Card, Message, Popover } from '@arco-design/web-react';
 import { IconInfoCircle } from '@arco-design/web-react/icon';
 
 interface PromptProps {
-    prompt: string;
-    response_voice: Blob,
-    response_word: string
+  audio_assignment: string;
+  prompt_word: string;
+  prompt_voice: string;
 }
 
 const Prompt: React.FC<PromptProps> = ({
-  prompt,
-  response_voice,
+  audio_assignment,
+  prompt_word,
+  prompt_voice,
 }) => {
-  const {userInfo} = useStore(Store);
   const audioRef = useRef(null);
   const [play, setPlay] = useState<boolean>(false);
   const [voiceUrl, setVoiceUrl] = useState<string>('');
+
+  useEffect(() => {
+    try {
+      const base64Data = prompt_voice;
+      const binaryData = atob(base64Data);
+      const uint8Array = new Uint8Array(new ArrayBuffer(binaryData.length));
+      for (let i = 0; i < binaryData.length; i++) {
+        uint8Array[i] = binaryData.charCodeAt(i);
+      }
+      const blobData = new Blob(
+        [uint8Array],
+        { type: 'application/octet-stream' }
+      );
+      setVoiceUrl(URL.createObjectURL(blobData));
+    } catch (e) {
+      Message.error('Resolve voice failed... Please try again');
+    }
+  }, [prompt_voice]);
+
   const handleVoice = () => {
     if (!play) {
-      setVoiceUrl(URL.createObjectURL(response_voice));
       // 播放音频
       audioRef.current.play();
       setPlay(!play);
@@ -46,16 +62,21 @@ const Prompt: React.FC<PromptProps> = ({
         title='UserName'
         bordered={false}
         className={styles.card}
-        extra={<Image src={AudioButton}  alt='default avator' className={styles.audiobutton} onClick={handleVoice}/>}
+        extra={
+          <Image
+            src={AudioButton}
+            alt='default avator'
+            className={styles.audiobutton}
+            onClick={handleVoice}
+          />}
       >
-        {prompt}
+        <div>{prompt_word}</div>
         <Popover
           position='br'
           title='Here is the comment'
           content={
             <span>
-              <p>Here is the text content</p>
-              <p>Here is the text content</p>
+              <p>{audio_assignment ? 'No comments' : audio_assignment}</p>
             </span>
           }
         >
@@ -64,7 +85,10 @@ const Prompt: React.FC<PromptProps> = ({
       </Card>
       <Image src={Bjut} alt='default avator' className={styles.avator}></Image>
       <audio ref={audioRef}>
-        <source src="http://streaming.tdiradio.com:8000/house.mp3" type="audio/mpeg" />
+        <source
+          src={voiceUrl}
+          type="audio/mpeg"
+        />
       </audio>
     </div>
   );
