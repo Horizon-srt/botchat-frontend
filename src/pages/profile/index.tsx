@@ -51,68 +51,71 @@ const Profile = () => {
         <div className={styles.container}>
           <div className={mainStyles.container}>
             <Form className={styles.content} form={form}>
-              <p>username:</p>
-              <Form.Item
-                field='username'
-                defaultValue={userInfo.username}
-                className={styles.username}
-                rules={[
-                  {
-                    required: true,
-                    type: 'string',
-                  },
-                ]}
-              >
-                <Input
-                  className={styles.inputBox}
-                  placeholder="Enter your userName"
-                  style={{width:'430px', height:'64px'}}
-                />
-              </Form.Item>
-
-              <p>password:</p>
-              <Form.Item
-                field='password'
-                defaultValue={userInfo.username}
-                className={styles.password}
-                rules={[
-                  {
-                    required: true,
-                    type: 'string',
-                  },
-                ]}
-              >
-                <Input.Password
-                  placeholder="Enter your password"
-                  className={styles.inputBox}
-                  style={{width:'430px', height:'64px'}}
-                />
-              </Form.Item>
-
-              <p>email:</p>
-              <Form.Item
-                field='email'
-                defaultValue={userInfo.username}
-                className={styles.email}
-                rules={[
-                  {
-                    type: 'email',
-                    validateLevel: 'warning',
-                  },
-                  {
-                    required: true,
-                    type: 'string',
-                  },
-                ]}
-              >
-                <Input
-                  type='email'
-                  className={styles.inputBox}
-                  placeholder="Enter your email"
-                  style={{width:'430px', height:'64px'}}
-                />
-              </Form.Item>
-
+              <div className={styles.oneLine}>
+                <div className={styles.username}>username:</div>
+                <Form.Item
+                  field='username'
+                  defaultValue={userInfo.username}
+                  className={styles.username}
+                  rules={[
+                    {
+                      required: true,
+                      type: 'string',
+                    },
+                  ]}
+                >
+                  <Input
+                    className={styles.inputBox}
+                    placeholder="Enter your userName"
+                    style={{width:'430px', height:'64px'}}
+                  />
+                </Form.Item>
+              </div>
+              <div className={styles.oneLine}>
+                <div className={styles.password}>password:</div>
+                <Form.Item
+                  field='password'
+                  defaultValue={userInfo.username}
+                  className={styles.password}
+                  rules={[
+                    {
+                      required: true,
+                      type: 'string',
+                    },
+                  ]}
+                >
+                  <Input.Password
+                    placeholder="Enter your password"
+                    className={styles.inputBox}
+                    style={{width:'430px'}}
+                  />
+                </Form.Item>
+              </div>
+              <div className={styles.oneLine}>
+                <div className={styles.email}>email:</div>
+                <Form.Item
+                  field='email'
+                  defaultValue={userInfo.username}
+                  className={styles.email}
+                  rules={[
+                    {
+                      type: 'email',
+                      validateLevel: 'warning',
+                    },
+                    {
+                      required: true,
+                      type: 'string',
+                    },
+                  ]}
+                >
+                  <Input
+                    type='email'
+                    className={styles.emailInputBox}
+                    placeholder="Enter your email"
+                    style={{width:'430px'}}
+                  />
+                </Form.Item>
+              </div>
               <div className={styles.buttons}>
                 <Button
                   className={mainStyles.loginButton}
