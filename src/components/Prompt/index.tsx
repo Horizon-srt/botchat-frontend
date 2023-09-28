@@ -70,7 +70,7 @@ const Prompt: React.FC<PromptProps> = ({
             onClick={handleVoice}
           />}
       >
-        <div>{prompt_word}</div>
+        <div className={styles.promptSize}>{prompt_word}</div>
         <Popover
           position='br'
           title='Here is the comment'

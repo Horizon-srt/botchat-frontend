@@ -5,6 +5,11 @@
   align-items: flex-start;
 }
 
+.buttons{
+  display: flex;
+  justify-content: center;
+}
+
 .container {
   padding: 165px 50px;
 }
@@ -21,17 +26,12 @@
 
 .content {
   height: 750px;
-  width: 1250px;
-  margin-left: 60px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  align-items: center;
 }
 
 .inputBox {
-  background-color: white;
-  border: 1px solid #F2F3F5;
   border-radius: 2px;
   margin-left: 20px;
 }
@@ -41,9 +41,22 @@
 }
 
 .password{
-  font-size: 48px;
+  font-size: 30px;
 }
 
 .email{
-  font-size: 40px;
+  font-size: 30px;
+}
+
+.emailInputBox{
+  border-radius: 2px;
+  margin-left: 20px;
+  margin-left: 75px;
+}
+
+.oneLine{
+  display: flex;
+  /* align-items: center; */
+  padding-right: 65px;
+  padding-left: 100px;
 }
