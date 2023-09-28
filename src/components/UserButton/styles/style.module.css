@@ -1,4 +1,5 @@
 .userArea {
+  width: 20em;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -20,7 +21,7 @@
 }
 
 .username {
-  width: 150px;
+  width: 18em;
   color: #165DFF;
   font-size: 20px;
   margin-left: 10px;

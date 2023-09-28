@@ -58,7 +58,7 @@ const Prompt: React.FC<PromptProps> = ({
 
   return (
     <div className={styles.prompt}>
-      <Card style={{ width: 360 }}
+      <Card
         title='UserName'
         bordered={false}
         className={styles.card}
@@ -70,7 +70,7 @@ const Prompt: React.FC<PromptProps> = ({
             onClick={handleVoice}
           />}
       >
-        <div className={styles.promptSize}>{prompt_word}</div>
+        <div>{prompt_word}</div>
         <Popover
           position='br'
           title='Here is the comment'

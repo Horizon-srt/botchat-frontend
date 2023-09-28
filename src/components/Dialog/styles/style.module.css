@@ -5,5 +5,7 @@
 }
 
 .dialog {
-  overflow: auto;
+  height: 40em;
+  overflow: scroll;
+  padding: 2em;
 }

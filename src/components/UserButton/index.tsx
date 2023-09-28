@@ -36,7 +36,12 @@ const UserButton: React.FC = () => {
         <Image src={Bjut} alt='default avator' className={styles.avator}/>
       </div>
       <IconApps fontSize='18px' className={styles.appicon} />
-      <div className={styles.username}>{userInfo.username}</div>
+      <div className={styles.username}>
+        {
+          userInfo.username.length > 20 ?
+            userInfo.username.slice(0, 20) : userInfo.username
+        }
+      </div>
       <Dropdown droplist={dropList} trigger='click' position='br'>
         <IconDown className={styles.downicon}/>
       </Dropdown>

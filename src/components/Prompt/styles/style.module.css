@@ -9,13 +9,13 @@
     width: 40px;
     height: 40px;
     display: inline-flex;
-    padding: 16px;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
 .prompt{
+    padding-right: 0.5em;
     display: flex;
     text-align: right;
     justify-content: flex-end;
@@ -39,10 +39,11 @@
 
 .card{
     font-size: 20px;
+    width: 36em;
 }
 
 .audiobutton{
-    width: 32px;
-    height: 32px;
+    width: 24px;
+    height: 24px;
     flex-shrink: 0;
 }

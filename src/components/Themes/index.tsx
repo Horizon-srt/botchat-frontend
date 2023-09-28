@@ -185,7 +185,12 @@ const Themes: React.FC<ThemesProp> = ({
   return (
     <div className={styles.themearea}>
       <IconApps fontSize='18px' className={styles.appicon} />
-      <div className={styles.theme}>{topic.theme}</div>
+      <div className={styles.theme}>
+        {
+          topic.theme.length > 20 ?
+            topic.theme.slice(0, 20) + '...' : topic.theme
+        }
+      </div>
       <IconEdit
         fontSize='18px'
         className={styles.editicon}
@@ -194,6 +199,8 @@ const Themes: React.FC<ThemesProp> = ({
       <Dropdown droplist={dropList} trigger='click' position='br'>
         <IconDown className={styles.downicon}/>
       </Dropdown>
+
+      {/* 修改主题名称 */}
       <FormModal
         title='Change theme name'
         form={form}
@@ -212,6 +219,8 @@ const Themes: React.FC<ThemesProp> = ({
           password={false}
         />
       </FormModal>
+
+      {/* 创建新对话选项 */}
       <Modal
         visible={visibleNew}
         simple={true}
@@ -262,6 +271,8 @@ const Themes: React.FC<ThemesProp> = ({
           </div>
         </div>
       </Modal>
+
+      {/* 自定义对话语境 */}
       <Modal
         visible={visibleCustom}
         simple={true}
@@ -274,8 +285,8 @@ const Themes: React.FC<ThemesProp> = ({
         <div className={styles.customText}>
           Do you have any instruction for chatbot?
         </div>
-        <Form >
-          <Form.Item field='instruction' className={styles.textArea}>
+        <Form form={formCustom}>
+          <Form.Item field={'instruction'} className={styles.textArea}>
             <Input.TextArea
               placeholder='Please enter...'
               style={{ minHeight: 250, width: 370 }}

@@ -101,6 +101,7 @@ const Home = () => {
 
   return (
     <main className={mainStyles.background}>
+      {/* 打开页面立即显示 */}
       <Modal
         visible={visibleStart}
         simple={true}

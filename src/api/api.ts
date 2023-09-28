@@ -64,7 +64,7 @@ export const getTopics = async (args: GetTopicsProps) => {
   // const mockTopics = {
   //   topics: [{
   //     topic_id: '100',
-  //     theme: 'How to use Java'
+  //     theme: 'How to use Java Java Java Java Java'
   //   },
   //   {
   //     topic_id: '200',
@@ -92,27 +92,51 @@ export const getTopicDetail = async (args: GetTopicDetailProps) => {
   //   details: [{
   //     conversation_id: '1',
   //     prompt_word: 'Hello',
-  //     prompt_voice: new Blob(),
+  //     prompt_voice: 'new Blob()',
   //     response_word: 'Hi',
   //     audio_assessment: 'a',
-  //     response_voice: new Blob()
+  //     response_voice: 'new Blob()'
   //   },
   //   {
   //     conversation_id: '2',
   //     prompt_word: 'Hello',
-  //     prompt_voice: new Blob(),
+  //     prompt_voice: 'new Blob()',
   //     response_word: 'god can help you',
   //     audio_assessment: 'a',
-  //     response_voice: new Blob()
+  //     response_voice: 'new Blob()'
   //   },
   //   {
   //     conversation_id: '3',
   //     prompt_word: 'Hello',
-  //     prompt_voice: new Blob(),
+  //     prompt_voice: 'new Blob()',
   //     response_word: 'Really',
   //     audio_assessment: 'a',
-  //     response_voice: new Blob()
-  //   }]
+  //     response_voice: 'new Blob()'
+  //   },
+  //   {
+  //     conversation_id: '4',
+  //     prompt_word: 'Hello',
+  //     prompt_voice: 'new Blob()',
+  //     response_word: 'god can help you',
+  //     audio_assessment: 'a',
+  //     response_voice: 'new Blob()'
+  //   },
+  //   {
+  //     conversation_id: '5',
+  //     prompt_word: 'Hello',
+  //     prompt_voice: 'new Blob()',
+  //     response_word: 'god can help you',
+  //     audio_assessment: 'a',
+  //     response_voice: 'new Blob()'
+  //   },
+  //   {
+  //     conversation_id: '6',
+  //     prompt_word: 'Hello',
+  //     prompt_voice: 'new Blob()',
+  //     response_word: 'god can help you',
+  //     audio_assessment: 'a',
+  //     response_voice: 'new Blob()'
+  //   },]
   // };
   // return mockDetails;
 };
