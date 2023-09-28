@@ -24,20 +24,20 @@ const port = '80';
 
 // 用户的登录功能
 export const postUserLogin = async (args: UserLoginProps) => {
-  // const { data } = await axios.post(
-  //   'http://' + ip_address + ':' + port + '/botchat/user/login/',
-  //   {
-  //     ...args
-  //   });
-  // return data;
+  const { data } = await axios.post(
+    'http://' + ip_address + ':' + port + '/botchat/user/login/',
+    {
+      ...args
+    });
+  return data;
 
-  const mockUserInfo = {
-    username: 'aaa',
-    password: 'aaa',
-    email: 'aaa',
-    user_id: 'aaa'
-  };
-  return mockUserInfo;
+  // const mockUserInfo = {
+  //   username: 'aaa',
+  //   password: 'aaa',
+  //   email: 'aaa',
+  //   user_id: 'aaa'
+  // };
+  // return mockUserInfo;
 };
 
 // 注册新用户
@@ -52,134 +52,134 @@ export const postUserRegister = async (args: UserRegisterProps) => {
 
 // 获取用户历史Topic
 export const getTopics = async (args: GetTopicsProps) => {
-  // const { data } = await axios.get(
-  //   'http://' + ip_address + ':' + port + '/botchat/chat/gettopics/',
-  //   {
-  //     params: {
-  //       ...args
-  //     }
-  //   });
-  // return data;
+  const { data } = await axios.get(
+    'http://' + ip_address + ':' + port + '/botchat/chat/gettopics/',
+    {
+      params: {
+        ...args
+      }
+    });
+  return data;
 
-  const mockTopics = {
-    topics: [{
-      topic_id: '100',
-      theme: 'How to use Java Java Java Java Java'
-    },
-    {
-      topic_id: '200',
-      theme: 'pronunciation test'
-    },
-    {
-      topic_id: '300',
-      theme: 'Hello World'
-    }]
-  };
-  return mockTopics;
+  // const mockTopics = {
+  //   topics: [{
+  //     topic_id: '100',
+  //     theme: 'How to use Java Java Java Java Java'
+  //   },
+  //   {
+  //     topic_id: '200',
+  //     theme: 'pronunciation test'
+  //   },
+  //   {
+  //     topic_id: '300',
+  //     theme: 'Hello World'
+  //   }]
+  // };
+  // return mockTopics;
 };
 
 // 获取指定Topic的详细对话内容
 export const getTopicDetail = async (args: GetTopicDetailProps) => {
-  // const { data } = await axios.get(
-  //   'http://' + ip_address + ':' + port + '/botchat/chat/getdetails/',
-  //   {
-  //     params: {
-  //       ...args
-  //     }
-  //   });
-  // return data;
+  const { data } = await axios.get(
+    'http://' + ip_address + ':' + port + '/botchat/chat/getdetails/',
+    {
+      params: {
+        ...args
+      }
+    });
+  return data;
 
-  const mockDetails = {
-    details: [{
-      conversation_id: '1',
-      prompt_word: 'Hello',
-      prompt_voice: 'new Blob()',
-      response_word: 'Hi',
-      audio_assessment: 'aaaa',
-      response_voice: 'new Blob()'
-    },
-    {
-      conversation_id: '2',
-      prompt_word: 'Hello',
-      prompt_voice: 'new Blob()',
-      response_word: 'god can help you',
-      audio_assessment: 'abbbbb',
-      response_voice: 'new Blob()'
-    },
-    {
-      conversation_id: '3',
-      prompt_word: 'Hello',
-      prompt_voice: 'new Blob()',
-      response_word: 'Really',
-      audio_assessment: 'accc',
-      response_voice: 'new Blob()'
-    },
-    {
-      conversation_id: '4',
-      prompt_word: 'Hello',
-      prompt_voice: 'new Blob()',
-      response_word: 'god can help you',
-      audio_assessment: 'ad',
-      response_voice: 'new Blob()'
-    },
-    {
-      conversation_id: '5',
-      prompt_word: 'Hello',
-      prompt_voice: 'new Blob()',
-      response_word: 'god can help you',
-      audio_assessment: 'aeeeeeeeeee',
-      response_voice: 'new Blob()'
-    },
-    {
-      conversation_id: '6',
-      prompt_word: 'Hello',
-      prompt_voice: 'new Blob()',
-      response_word: 'god can help you',
-      audio_assessment: 'af',
-      response_voice: 'new Blob()'
-    },]
-  };
-  return mockDetails;
+  // const mockDetails = {
+  //   details: [{
+  //     conversation_id: '1',
+  //     prompt_word: 'Hello',
+  //     prompt_voice: 'new Blob()',
+  //     response_word: 'Hi',
+  //     audio_assessment: 'aaaa',
+  //     response_voice: 'new Blob()'
+  //   },
+  //   {
+  //     conversation_id: '2',
+  //     prompt_word: 'Hello',
+  //     prompt_voice: 'new Blob()',
+  //     response_word: 'god can help you',
+  //     audio_assessment: 'abbbbb',
+  //     response_voice: 'new Blob()'
+  //   },
+  //   {
+  //     conversation_id: '3',
+  //     prompt_word: 'Hello',
+  //     prompt_voice: 'new Blob()',
+  //     response_word: 'Really',
+  //     audio_assessment: 'accc',
+  //     response_voice: 'new Blob()'
+  //   },
+  //   {
+  //     conversation_id: '4',
+  //     prompt_word: 'Hello',
+  //     prompt_voice: 'new Blob()',
+  //     response_word: 'god can help you',
+  //     audio_assessment: 'ad',
+  //     response_voice: 'new Blob()'
+  //   },
+  //   {
+  //     conversation_id: '5',
+  //     prompt_word: 'Hello',
+  //     prompt_voice: 'new Blob()',
+  //     response_word: 'god can help you',
+  //     audio_assessment: 'aeeeeeeeeee',
+  //     response_voice: 'new Blob()'
+  //   },
+  //   {
+  //     conversation_id: '6',
+  //     prompt_word: 'Hello',
+  //     prompt_voice: 'new Blob()',
+  //     response_word: 'god can help you',
+  //     audio_assessment: 'af',
+  //     response_voice: 'new Blob()'
+  //   },]
+  // };
+  // return mockDetails;
 };
 
 // 获取用户保存的语境
 export const getEnvironment = async (args: GetEnvironmentsProps) => {
-  // const { data } = await axios.get(
-  //   'http://' + ip_address + ':' + port + '/botchat/chat/gettopics/',
-  //   {
-  //     params: {
-  //       ...args
-  //     }
-  //   });
-  // return data;
+  const { data } = await axios.get(
+    'http://' + ip_address + ':' + port + '/botchat/chat/gettopics/',
+    {
+      params: {
+        ...args
+      }
+    });
+  return data;
 
-  const mockEnvironments = {
-    environments: [{
-      topic_id: '100',
-      theme: 'History1'
-    },
-    {
-      topic_id: '200',
-      theme: 'History2'
-    },
-    {
-      topic_id: '300',
-      theme: 'History3'
-    },
-    {
-      topic_id: '400',
-      theme: 'History4'
-    },
-    {
-      topic_id: '500',
-      theme: 'History5'
-    },
-    {
-      topic_id: '600',
-      theme: 'History6'
-    }]
-  };
-  return mockEnvironments;
+  // const mockEnvironments = {
+  //   environments: [{
+  //     topic_id: '100',
+  //     theme: 'History1'
+  //   },
+  //   {
+  //     topic_id: '200',
+  //     theme: 'History2'
+  //   },
+  //   {
+  //     topic_id: '300',
+  //     theme: 'History3'
+  //   },
+  //   {
+  //     topic_id: '400',
+  //     theme: 'History4'
+  //   },
+  //   {
+  //     topic_id: '500',
+  //     theme: 'History5'
+  //   },
+  //   {
+  //     topic_id: '600',
+  //     theme: 'History6'
+  //   }]
+  // };
+  // return mockEnvironments;
 };
 
 // 发送语音并获取处理结果（废弃）
