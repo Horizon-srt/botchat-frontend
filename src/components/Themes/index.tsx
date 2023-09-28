@@ -176,9 +176,16 @@ const Themes: React.FC<ThemesProp> = ({
 
   const choiceList = (
     <Menu className={styles.choiceArea} onClickMenuItem={onCreateExist}>
-      <Menu.Item key='Shopping'>Shopping</Menu.Item>
-      <Menu.Item key='Tour'>Tour</Menu.Item>
-      <Menu.Item key='Restaurant'>Restaurant</Menu.Item>
+      <Menu.Item key='Attractions for help'>Attractions for help</Menu.Item>
+      <Menu.Item key='Teacher helps with English'>
+        Teacher helps with English
+      </Menu.Item>
+      <Menu.Item key='Apply for resignation'>Apply for resignation</Menu.Item>
+      <Menu.Item key='Lost Items at Station'>Lost Items at Station</Menu.Item>
+      <Menu.Item key='Cajoling your girlfriend'>
+        Cajoling your girlfriend
+      </Menu.Item>
+      <Menu.Item key='Food Ordering'>Food Ordering</Menu.Item>
     </Menu>
   );
 

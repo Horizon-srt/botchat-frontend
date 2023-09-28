@@ -8,13 +8,13 @@ import { Card, Message, Popover } from '@arco-design/web-react';
 import { IconInfoCircle } from '@arco-design/web-react/icon';
 
 interface PromptProps {
-  audio_assignment: string;
+  audio_assessment: string;
   prompt_word: string;
   prompt_voice: string;
 }
 
 const Prompt: React.FC<PromptProps> = ({
-  audio_assignment,
+  audio_assessment,
   prompt_word,
   prompt_voice,
 }) => {
@@ -76,7 +76,7 @@ const Prompt: React.FC<PromptProps> = ({
           title='Here is the comment'
           content={
             <span>
-              <p>{audio_assignment ? 'No comments' : audio_assignment}</p>
+              <p>{audio_assessment ? audio_assessment : 'No comments'}</p>
             </span>
           }
         >

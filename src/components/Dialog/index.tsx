@@ -18,7 +18,7 @@ const Dialog: React.FC<DialogProps> = ({ details }) => {
             return (
               <div key={index}>
                 <Prompt
-                  audio_assignment={value.audio_assessment}
+                  audio_assessment={value.audio_assessment}
                   prompt_word={value.prompt_word}
                   prompt_voice={value.prompt_voice}
                 />
