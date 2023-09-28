@@ -35,6 +35,7 @@ const Interaction: React.FC<InteractionProps> = ({
 }) => {
   const [prompt_word, setPrompt_word] = useState('');
   const [onRecord, setOnRecord] = useState(false);
+  const [shouldSend, setShouldSend] = useState(false);
   const {userInfo} = useStore(Store);
   const {mediaBlob, startRecord, stopRecord} = useMediaRecorder();
   // // 语音转文字后处理对话
@@ -260,31 +261,37 @@ const Interaction: React.FC<InteractionProps> = ({
     }
   };
 
+  useEffect(() => {
+    if (mediaBlob.size != 0) {
+      const reader = new FileReader();
+      reader.onload = async (e: ProgressEvent<FileReader>) => {
+        const base64 = e.target?.result;
+        const res_voice_to_word = await postHandleAudio({
+          user_id: userInfo.user_id,
+          prompt_voice: base64,
+          topic_id: topic.topic_id
+        });
+        if (!res_voice_to_word) {
+          Message.error('Record audio failed... Please try again');
+          return;
+        }
+        chat({
+          user_id: userInfo.user_id,
+          topic_id: topic.topic_id,
+          conversation_id: res_voice_to_word.conversation_id,
+          prompt_word: res_voice_to_word.prompt
+        });
+      };
+      reader.readAsDataURL(mediaBlob);
+    }
+
+  }, [mediaBlob]);
+
   const handleVoice = async () => {
     try {
       if (onRecord) {
-        stopRecord();
         setOnRecord(false);
-        const reader = new FileReader();
-        reader.onload = async (e: ProgressEvent<FileReader>) => {
-          const base64 = e.target?.result;
-          const res_voice_to_word = await postHandleAudio({
-            user_id: userInfo.user_id,
-            prompt_voice: base64,
-            topic_id: topic.topic_id
-          });
-          if (!res_voice_to_word) {
-            Message.error('Record audio failed... Please try again');
-            return;
-          }
-          chat({
-            user_id: userInfo.user_id,
-            topic_id: topic.topic_id,
-            conversation_id: res_voice_to_word.conversation_id,
-            prompt_word: res_voice_to_word.prompt
-          });
-        };
-        reader.readAsDataURL(mediaBlob);
+        stopRecord();
       } else {
         setOnRecord(true);
         startRecord();
