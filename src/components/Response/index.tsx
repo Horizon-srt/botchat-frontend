@@ -19,25 +19,6 @@ const Response: React.FC<ResponseProps> = ({
 }) => {
   const audioRef = useRef(null);
   const [play, setPlay] = useState<boolean>(false);
-  const [voiceUrl, setVoiceUrl] = useState<string>('');
-
-  useEffect(() => {
-    try {
-      const base64Data = response_voice;
-      const binaryData = atob(base64Data);
-      const uint8Array = new Uint8Array(new ArrayBuffer(binaryData.length));
-      for (let i = 0; i < binaryData.length; i++) {
-        uint8Array[i] = binaryData.charCodeAt(i);
-      }
-      const blobData = new Blob(
-        [uint8Array],
-        { type: 'application/octet-stream' }
-      );
-      setVoiceUrl(URL.createObjectURL(blobData));
-    } catch (e) {
-      Message.error('Resolve voice failed... Please try again');
-    }
-  }, [response_voice]);
 
   const handleVoice = () => {
     if (!play) {
@@ -49,10 +30,6 @@ const Response: React.FC<ResponseProps> = ({
       // 结束播放
       audioRef.current.pause();
       setPlay(!play);
-      if (voiceUrl) {
-        URL.revokeObjectURL(voiceUrl);
-      }
-      setVoiceUrl('');
     }
   };
 
@@ -77,7 +54,7 @@ const Response: React.FC<ResponseProps> = ({
         </div>
         <audio ref={audioRef}>
           <source
-            src={voiceUrl}
+            src={`data:audio/mpeg;base64,${response_voice}`}
             type="audio/mpeg"
           />
         </audio>

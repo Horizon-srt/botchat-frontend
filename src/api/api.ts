@@ -31,13 +31,13 @@ export const postUserLogin = async (args: UserLoginProps) => {
     });
   return data;
 
-  // const mockUserInfo = {
-  //   username: 'aaa',
-  //   password: 'aaa',
-  //   email: 'aaa',
-  //   user_id: 'aaa'
-  // };
-  // return mockUserInfo;
+  const mockUserInfo = {
+    username: 'aaa',
+    password: 'aaa',
+    email: 'aaa',
+    user_id: 'aaa'
+  };
+  return mockUserInfo;
 };
 
 // 注册新用户
@@ -61,21 +61,21 @@ export const getTopics = async (args: GetTopicsProps) => {
     });
   return data;
 
-  // const mockTopics = {
-  //   topics: [{
-  //     topic_id: '100',
-  //     theme: 'How to use Java Java Java Java Java'
-  //   },
-  //   {
-  //     topic_id: '200',
-  //     theme: 'pronunciation test'
-  //   },
-  //   {
-  //     topic_id: '300',
-  //     theme: 'Hello World'
-  //   }]
-  // };
-  // return mockTopics;
+  const mockTopics = {
+    topics: [{
+      topic_id: '100',
+      theme: 'How to use Java Java Java Java Java'
+    },
+    {
+      topic_id: '200',
+      theme: 'pronunciation test'
+    },
+    {
+      topic_id: '300',
+      theme: 'Hello World'
+    }]
+  };
+  return mockTopics;
 };
 
 // 获取指定Topic的详细对话内容
@@ -89,57 +89,58 @@ export const getTopicDetail = async (args: GetTopicDetailProps) => {
     });
   return data;
 
-  // const mockDetails = {
-  //   details: [{
-  //     conversation_id: '1',
-  //     prompt_word: 'Hello',
-  //     prompt_voice: 'new Blob()',
-  //     response_word: 'Hi',
-  //     audio_assessment: 'aaaa',
-  //     response_voice: 'new Blob()'
-  //   },
-  //   {
-  //     conversation_id: '2',
-  //     prompt_word: 'Hello',
-  //     prompt_voice: 'new Blob()',
-  //     response_word: 'god can help you',
-  //     audio_assessment: 'abbbbb',
-  //     response_voice: 'new Blob()'
-  //   },
-  //   {
-  //     conversation_id: '3',
-  //     prompt_word: 'Hello',
-  //     prompt_voice: 'new Blob()',
-  //     response_word: 'Really',
-  //     audio_assessment: 'accc',
-  //     response_voice: 'new Blob()'
-  //   },
-  //   {
-  //     conversation_id: '4',
-  //     prompt_word: 'Hello',
-  //     prompt_voice: 'new Blob()',
-  //     response_word: 'god can help you',
-  //     audio_assessment: 'ad',
-  //     response_voice: 'new Blob()'
-  //   },
-  //   {
-  //     conversation_id: '5',
-  //     prompt_word: 'Hello',
-  //     prompt_voice: 'new Blob()',
-  //     response_word: 'god can help you',
-  //     audio_assessment: 'aeeeeeeeeee',
-  //     response_voice: 'new Blob()'
-  //   },
-  //   {
-  //     conversation_id: '6',
-  //     prompt_word: 'Hello',
-  //     prompt_voice: 'new Blob()',
-  //     response_word: 'god can help you',
-  //     audio_assessment: 'af',
-  //     response_voice: 'new Blob()'
-  //   },]
-  // };
-  // return mockDetails;
+  const mockDetails = {
+    details: [{
+      conversation_id: '1',
+      prompt_word: 'Hello',
+      prompt_voice: 'new Blob()',
+      response_word: 'Hi',
+      audio_assessment: 'aaaa',
+      response_voice: 'new Blob()'
+    },
+    {
+      conversation_id: '2',
+      prompt_word: 'Hello',
+      prompt_voice: 'new Blob()',
+      response_word: 'god can help you',
+      audio_assessment: 'abbbbb',
+      response_voice: 'new Blob()'
+    },
+    {
+      conversation_id: '3',
+      prompt_word: 'Hello',
+      prompt_voice: 'new Blob()',
+      response_word: 'Really',
+      audio_assessment: 'accc',
+      response_voice: 'new Blob()'
+    },
+    {
+      conversation_id: '4',
+      prompt_word: 'Hello',
+      prompt_voice: 'new Blob()',
+      response_word: 'god can help you',
+      audio_assessment: 'ad',
+      response_voice: 'new Blob()'
+    },
+    {
+      conversation_id: '5',
+      prompt_word: 'Hello',
+      prompt_voice: 'new Blob()',
+      response_word: 'god can help you',
+      audio_assessment: 'aeeeeeeeeee',
+      response_voice: 'new Blob()'
+    },
+    {
+      // conversation_id: '6',
+      // prompt_word: 'Hello',
+      // prompt_voice: 'new Blob()',
+      // response_word: 'god can help you',
+      // audio_assessment: 'af',
+      // ...data
+      // response_voice: 'new Blob()'
+    },]
+  };
+  return mockDetails;
 };
 
 // 获取用户保存的语境
